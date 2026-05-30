@@ -1,0 +1,10 @@
+#!/bin/bash
+cd "/Users/shubhamsah/dev/Video Agent/app/public/images"
+mv "Screenshot 2026-05-30 at 3.55.02 PM.png" "screenshot-1.png"
+mv "Screenshot 2026-05-30 at 3.55.14 PM.png" "screenshot-2.png"
+mv "Screenshot 2026-05-30 at 3.55.35 PM.png" "screenshot-3.png"
+mv "Screenshot 2026-05-30 at 3.55.50 PM.png" "screenshot-4.png"
+mv "Screenshot 2026-05-30 at 3.56.00 PM.png" "screenshot-5.png"
+mv "Screenshot 2026-05-30 at 3.56.09 PM.png" "screenshot-6.png"
+mv "Screenshot 2026-05-30 at 3.56.25 PM.png" "screenshot-7.png"
+mv "Screenshot 2026-05-30 at 3.56.41 PM.png" "screenshot-8.png"
