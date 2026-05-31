@@ -2,181 +2,314 @@
 
 import { useState } from "react"
 import { 
-  Play, Pause, Volume2, Maximize, Settings, ChevronDown, 
-  Users, Share2, Download, Check, Clock, Sparkles, 
-  FileText, Languages, Presentation, Image, Video,
-  MessageSquare, AlertCircle, CheckCircle2, Loader2,
-  Plus, Search, MoreHorizontal, Zap, ArrowRight, X
+  Play, Pause, Volume2, Maximize2, SkipBack, SkipForward,
+  Scissors, Copy, Crop, ZoomIn, MessageSquare, Type,
+  Music, Mic, Image as ImageIcon, Wand2, ChevronDown,
+  Share2, Download, Check, Clock, Search, Plus,
+  ChevronLeft, ChevronRight, Monitor, Tablet, Smartphone,
+  Maximize, Grid3x3, Move, MousePointer, Eye, EyeOff,
+  Settings, ArrowRight, Sparkles, FileText, Languages,
+  Presentation, Zap, CheckCircle2, AlertCircle, Loader2,
+  MoreHorizontal, Trash2, SplitSquareHorizontal, Layers
 } from "lucide-react"
 
 export function EditorWorkspace() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [activeTab, setActiveTab] = useState<"overview" | "scenes" | "script" | "assets" | "documentation" | "translations" | "demo">("overview")
-  const [activeRightPanel, setActiveRightPanel] = useState<"ai" | "properties" | "comments">("ai")
+  const [activeLeftTab, setActiveLeftTab] = useState<"scenes" | "script" | "captions" | "assets" | "voiceover" | "documentation" | "demo" | "translations">("scenes")
+  const [selectedScene, setSelectedScene] = useState(2)
+  const [previewMode, setPreviewMode] = useState<"desktop" | "tablet" | "mobile">("desktop")
+  const [activeRightPanel, setActiveRightPanel] = useState<"properties" | "ai" | "comments">("properties")
+
+  const scenes = [
+    { id: 1, title: "Introduction", duration: "0:24", status: "complete" as const, thumbnail: "/images/screenshot-1.png" },
+    { id: 2, title: "Feature Overview", duration: "1:12", status: "complete" as const, thumbnail: "/images/screenshot-2.png" },
+    { id: 3, title: "Setup Guide", duration: "2:05", status: "processing" as const, thumbnail: "/images/screenshot-3.png" },
+    { id: 4, title: "Advanced Features", duration: "1:45", status: "pending" as const, thumbnail: "/images/screenshot-4.png" },
+    { id: 5, title: "Conclusion", duration: "0:30", status: "pending" as const, thumbnail: "/images/screenshot-5.png" },
+  ]
 
   return (
-    <div className="flex flex-col h-screen bg-[#FAFAF8]">
-      {/* Top Bar */}
-      <header className="h-14 border-b border-[#E8E8E6] bg-white flex items-center justify-between px-6">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-3">
-            <h1 className="text-[15px] font-semibold text-[#18181B]">Product Onboarding Flow</h1>
-            <div className="flex items-center gap-1.5 text-[12px] text-[#71717A]">
-              <Clock className="w-3.5 h-3.5" strokeWidth={1.5} />
-              <span>Auto-saved 2m ago</span>
-            </div>
+    <div className="flex flex-col h-screen bg-[#FAFAFA]">
+      {/* Top Toolbar */}
+      <header className="h-12 border-b border-[#E4E4E7] bg-white flex items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <h1 className="text-[14px] font-semibold text-[#18181B]">Product Onboarding Flow</h1>
+          <div className="flex items-center gap-1.5 text-[11px] text-[#A1A1AA]">
+            <Clock className="w-3 h-3" strokeWidth={1.5} />
+            <span>Saved 2m ago</span>
           </div>
-          <span className="text-[12px] bg-[#F5F5FF] text-[#8F8CFF] px-2.5 py-1 rounded-md font-medium">
-            Interactive Demo
-          </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-3 py-1.5 text-[13px] text-[#52525B] hover:text-[#18181B] transition-colors">
-            <Users className="w-4 h-4" strokeWidth={1.5} />
-            <span>3</span>
-          </button>
-          
-          <button className="px-3 py-1.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] transition-all">
-            <Share2 className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
+        {/* Quick Actions Toolbar */}
+        <div className="flex items-center gap-1">
+          <ToolbarButton icon={Scissors} label="Cut" />
+          <ToolbarButton icon={Copy} label="Duplicate" />
+          <ToolbarButton icon={Crop} label="Crop" />
+          <ToolbarButton icon={ZoomIn} label="Zoom" />
+          <div className="w-px h-5 bg-[#E4E4E7] mx-1" />
+          <ToolbarButton icon={MessageSquare} label="Callout" />
+          <ToolbarButton icon={Type} label="Caption" />
+          <ToolbarButton icon={Mic} label="Voiceover" />
+          <ToolbarButton icon={Music} label="Music" />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] bg-white border border-[#E4E4E7] rounded-[8px] hover:border-[#D4D4D8] transition-all">
+            <Share2 className="w-3.5 h-3.5 inline mr-1" strokeWidth={1.5} />
             Share
           </button>
-
-          <button className="px-3 py-1.5 text-[13px] font-medium text-[#52525B] bg-white border border-[#E8E8E6] rounded-lg hover:border-[#D4D4D2] transition-all">
-            <Download className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
+          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] bg-white border border-[#E4E4E7] rounded-[8px] hover:border-[#D4D4D8] transition-all">
+            <Download className="w-3.5 h-3.5 inline mr-1" strokeWidth={1.5} />
             Export
           </button>
-
-          <button className="px-4 py-1.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-lg hover:bg-[#7B77FF] transition-all shadow-sm">
-            <Check className="w-4 h-4 inline mr-1.5" strokeWidth={2} />
+          <button className="px-4 py-1.5 text-[12px] font-medium text-white bg-[#8F8CFF] rounded-[8px] hover:bg-[#7B77FF] transition-all">
+            <Check className="w-3.5 h-3.5 inline mr-1" strokeWidth={2} />
             Publish
           </button>
         </div>
       </header>
 
-      {/* Main Editor Area */}
+      {/* Main Editor Area - 4 Panel Structure */}
       <div className="flex-1 flex overflow-hidden">
         
-        {/* Left Panel - Project Structure */}
-        <aside className="w-[280px] border-r border-[#E8E8E6] bg-white flex flex-col">
-          <div className="p-4 border-b border-[#E8E8E6]">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A1A1AA]" strokeWidth={1.5} />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full pl-9 pr-3 py-2 text-[13px] bg-[#F5F5F3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white transition-all"
+        {/* LEFT SIDEBAR - 240px */}
+        <aside className="w-[240px] border-r border-[#E4E4E7] bg-white flex flex-col">
+          {/* Tab Navigation */}
+          <div className="border-b border-[#E4E4E7] p-2">
+            <div className="grid grid-cols-4 gap-1">
+              <TabButton
+                icon={Layers}
+                label="Scenes"
+                active={activeLeftTab === "scenes"}
+                onClick={() => setActiveLeftTab("scenes")}
+              />
+              <TabButton
+                icon={FileText}
+                label="Script"
+                active={activeLeftTab === "script"}
+                onClick={() => setActiveLeftTab("script")}
+              />
+              <TabButton
+                icon={Type}
+                label="Captions"
+                active={activeLeftTab === "captions"}
+                onClick={() => setActiveLeftTab("captions")}
+              />
+              <TabButton
+                icon={ImageIcon}
+                label="Assets"
+                active={activeLeftTab === "assets"}
+                onClick={() => setActiveLeftTab("assets")}
+              />
+            </div>
+            <div className="grid grid-cols-4 gap-1 mt-1">
+              <TabButton
+                icon={Mic}
+                label="Voice"
+                active={activeLeftTab === "voiceover"}
+                onClick={() => setActiveLeftTab("voiceover")}
+              />
+              <TabButton
+                icon={FileText}
+                label="Docs"
+                active={activeLeftTab === "documentation"}
+                onClick={() => setActiveLeftTab("documentation")}
+              />
+              <TabButton
+                icon={MousePointer}
+                label="Demo"
+                active={activeLeftTab === "demo"}
+                onClick={() => setActiveLeftTab("demo")}
+              />
+              <TabButton
+                icon={Languages}
+                label="i18n"
+                active={activeLeftTab === "translations"}
+                onClick={() => setActiveLeftTab("translations")}
               />
             </div>
           </div>
 
-          <nav className="flex-1 overflow-auto p-3">
-            <div className="space-y-6">
-              {/* Overview */}
-              <NavSection
-                title="Overview"
-                active={activeTab === "overview"}
-                onClick={() => setActiveTab("overview")}
-                status="complete"
-              />
-
-              {/* Scenes */}
-              <div>
-                <NavSection
-                  title="Scenes"
-                  active={activeTab === "scenes"}
-                  onClick={() => setActiveTab("scenes")}
-                  count={5}
-                />
-                {activeTab === "scenes" && (
-                  <div className="mt-2 ml-3 space-y-1">
-                    <SceneItem title="Introduction" duration="0:24" status="complete" />
-                    <SceneItem title="Feature Overview" duration="1:12" status="complete" />
-                    <SceneItem title="Setup Guide" duration="2:05" status="processing" active />
-                    <SceneItem title="Advanced Features" duration="1:45" status="pending" />
-                    <SceneItem title="Conclusion" duration="0:30" status="pending" />
-                  </div>
-                )}
+          {/* Tab Content */}
+          <div className="flex-1 overflow-auto">
+            {activeLeftTab === "scenes" && (
+              <div className="p-3 space-y-2">
+                {scenes.map((scene) => (
+                  <SceneCard
+                    key={scene.id}
+                    scene={scene}
+                    active={selectedScene === scene.id}
+                    onClick={() => setSelectedScene(scene.id)}
+                  />
+                ))}
               </div>
+            )}
 
-              {/* Script */}
-              <NavSection
-                title="Script"
-                active={activeTab === "script"}
-                onClick={() => setActiveTab("script")}
-                status="warning"
-              />
-
-              {/* Assets */}
-              <NavSection
-                title="Assets"
-                active={activeTab === "assets"}
-                onClick={() => setActiveTab("assets")}
-                count={24}
-              />
-
-              {/* Documentation */}
-              <NavSection
-                title="Documentation"
-                active={activeTab === "documentation"}
-                onClick={() => setActiveTab("documentation")}
-                aiGenerated
-              />
-
-              {/* Translations */}
-              <NavSection
-                title="Translations"
-                active={activeTab === "translations"}
-                onClick={() => setActiveTab("translations")}
-                count={3}
-              />
-
-              {/* Interactive Demo */}
-              <NavSection
-                title="Interactive Demo"
-                active={activeTab === "demo"}
-                onClick={() => setActiveTab("demo")}
-                status="processing"
-              />
-            </div>
-          </nav>
-
-          {/* Project Status */}
-          <div className="p-4 border-t border-[#E8E8E6]">
-            <div className="mb-3">
-              <div className="flex items-center justify-between text-[12px] mb-2">
-                <span className="text-[#71717A]">Project Progress</span>
-                <span className="font-medium text-[#18181B]">65%</span>
+            {activeLeftTab === "script" && (
+              <div className="p-4">
+                <div className="space-y-4">
+                  <ScriptBlock
+                    time="0:00"
+                    text="Welcome to our product onboarding guide. In this video, we'll walk you through the key features."
+                    active
+                  />
+                  <ScriptBlock
+                    time="0:24"
+                    text="Let's start with the dashboard. Here you can see all your projects at a glance."
+                  />
+                  <ScriptBlock
+                    time="1:36"
+                    text="Now, let's dive into the setup process. Click on the settings icon in the top right."
+                  />
+                </div>
               </div>
-              <div className="w-full bg-[#F5F5F3] h-1.5 rounded-full overflow-hidden">
-                <div className="bg-[#8F8CFF] h-full rounded-full" style={{ width: "65%" }} />
+            )}
+
+            {activeLeftTab === "captions" && (
+              <div className="p-4">
+                <div className="mb-4">
+                  <label className="text-[11px] text-[#71717A] mb-2 block">Caption Style</label>
+                  <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF]">
+                    <option>Bottom Center</option>
+                    <option>Top Center</option>
+                    <option>Bottom Left</option>
+                  </select>
+                </div>
+                <div className="space-y-3">
+                  <CaptionBlock time="0:00" text="Welcome to our product" />
+                  <CaptionBlock time="0:03" text="onboarding guide" />
+                  <CaptionBlock time="0:06" text="In this video, we'll walk" />
+                </div>
               </div>
-            </div>
-            <div className="space-y-1.5">
-              <StatusItem icon={CheckCircle2} label="Video edited" status="complete" />
-              <StatusItem icon={Loader2} label="AI processing" status="processing" />
-              <StatusItem icon={AlertCircle} label="Review needed" status="warning" />
-            </div>
+            )}
+
+            {activeLeftTab === "assets" && (
+              <div className="p-3">
+                <button className="w-full py-2 text-[12px] font-medium text-[#8F8CFF] bg-[#F5F5FF] border border-[#E8E7FF] rounded-[8px] hover:bg-[#EBEBFF] transition-all mb-3">
+                  <Plus className="w-4 h-4 inline mr-1" strokeWidth={1.5} />
+                  Upload Asset
+                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  <AssetThumbnail src="/images/screenshot-1.png" />
+                  <AssetThumbnail src="/images/screenshot-2.png" />
+                  <AssetThumbnail src="/images/screenshot-3.png" />
+                  <AssetThumbnail src="/images/screenshot-4.png" />
+                </div>
+              </div>
+            )}
+
+            {activeLeftTab === "voiceover" && (
+              <div className="p-4">
+                <div className="mb-4">
+                  <label className="text-[11px] text-[#71717A] mb-2 block">Voice</label>
+                  <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF]">
+                    <option>AI Voice - Professional</option>
+                    <option>AI Voice - Casual</option>
+                    <option>Record Custom</option>
+                  </select>
+                </div>
+                <button className="w-full py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-[8px] hover:bg-[#7B77FF] transition-all">
+                  <Mic className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
+                  Record Voiceover
+                </button>
+              </div>
+            )}
+
+            {activeLeftTab === "documentation" && (
+              <div className="p-4">
+                <p className="text-[12px] text-[#71717A] mb-3">
+                  Generate step-by-step documentation from your video.
+                </p>
+                <button className="w-full py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-[8px] hover:bg-[#7B77FF] transition-all">
+                  Generate Docs
+                </button>
+              </div>
+            )}
+
+            {activeLeftTab === "demo" && (
+              <div className="p-4">
+                <p className="text-[12px] text-[#71717A] mb-3">
+                  Add interactive hotspots and tooltips to create a clickable demo.
+                </p>
+                <button className="w-full py-2.5 text-[13px] font-medium text-white bg-[#8F8CFF] rounded-[8px] hover:bg-[#7B77FF] transition-all">
+                  <MousePointer className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
+                  Add Hotspot
+                </button>
+              </div>
+            )}
+
+            {activeLeftTab === "translations" && (
+              <div className="p-4">
+                <div className="space-y-2">
+                  <LanguageItem language="Spanish" status="complete" />
+                  <LanguageItem language="French" status="processing" />
+                  <LanguageItem language="German" status="pending" />
+                </div>
+                <button className="w-full py-2.5 text-[13px] font-medium text-[#8F8CFF] bg-[#F5F5FF] border border-[#E8E7FF] rounded-[8px] hover:bg-[#EBEBFF] transition-all mt-3">
+                  <Plus className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
+                  Add Language
+                </button>
+              </div>
+            )}
           </div>
         </aside>
 
-        {/* Center Panel - Canvas/Preview */}
-        <main className="flex-1 flex flex-col bg-[#F5F5F3]">
+        {/* CENTER CANVAS */}
+        <div className="flex-1 flex flex-col bg-[#F8F9FA]">
+          {/* Canvas Header */}
+          <div className="h-12 border-b border-[#E4E4E7] bg-white flex items-center justify-between px-4">
+            <div className="flex items-center gap-3">
+              <button className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
+                <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
+              </button>
+              <span className="text-[13px] font-medium text-[#18181B]">
+                Scene {selectedScene}: {scenes.find(s => s.id === selectedScene)?.title}
+              </span>
+              <button className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
+                <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
+              </button>
+            </div>
+
+            {/* Preview Mode Toggle */}
+            <div className="flex items-center gap-1 bg-[#F8F9FA] p-1 rounded-[8px]">
+              <PreviewModeButton
+                icon={Monitor}
+                active={previewMode === "desktop"}
+                onClick={() => setPreviewMode("desktop")}
+              />
+              <PreviewModeButton
+                icon={Tablet}
+                active={previewMode === "tablet"}
+                onClick={() => setPreviewMode("tablet")}
+              />
+              <PreviewModeButton
+                icon={Smartphone}
+                active={previewMode === "mobile"}
+                onClick={() => setPreviewMode("mobile")}
+              />
+            </div>
+
+            <button className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
+              <Maximize className="w-4 h-4" strokeWidth={1.5} />
+            </button>
+          </div>
+
           {/* Video Preview */}
           <div className="flex-1 flex items-center justify-center p-8">
-            <div className="w-full max-w-5xl">
-              <div className="aspect-video bg-[#18181B] rounded-lg shadow-2xl relative overflow-hidden group">
+            <div className={`w-full ${previewMode === "desktop" ? "max-w-5xl" : previewMode === "tablet" ? "max-w-3xl" : "max-w-md"} transition-all duration-300`}>
+              <div className="aspect-video bg-[#18181B] rounded-[8px] shadow-2xl relative overflow-hidden group">
                 {/* Video Content Placeholder */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-all cursor-pointer">
+                    <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-all cursor-pointer"
+                      onClick={() => setIsPlaying(!isPlaying)}>
                       {isPlaying ? (
                         <Pause className="w-10 h-10 text-white" strokeWidth={1.5} />
                       ) : (
                         <Play className="w-10 h-10 text-white ml-1" strokeWidth={1.5} />
                       )}
                     </div>
-                    <p className="text-white/60 text-[13px]">Scene 3: Setup Guide</p>
+                    <p className="text-white/60 text-[13px]">Scene {selectedScene}: {scenes.find(s => s.id === selectedScene)?.title}</p>
                   </div>
                 </div>
 
@@ -195,7 +328,7 @@ export function EditorWorkspace() {
                     </button>
                     
                     <div className="flex-1">
-                      <div className="w-full bg-white/20 h-1 rounded-full overflow-hidden">
+                      <div className="w-full bg-white/20 h-1 rounded-full overflow-hidden cursor-pointer">
                         <div className="bg-[#8F8CFF] h-full rounded-full" style={{ width: "35%" }} />
                       </div>
                     </div>
@@ -219,176 +352,211 @@ export function EditorWorkspace() {
             </div>
           </div>
 
-          {/* Smart Timeline */}
-          <div className="h-[200px] border-t border-[#E8E8E6] bg-white p-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[13px] font-semibold text-[#18181B]">Timeline</h3>
+          {/* PROFESSIONAL TIMELINE - 200px */}
+          <div className="h-[200px] border-t border-[#E4E4E7] bg-white">
+            <div className="flex items-center justify-between px-4 py-2 border-b border-[#E4E4E7]">
+              <h3 className="text-[12px] font-semibold text-[#18181B]">Timeline</h3>
               <div className="flex items-center gap-2">
-                <button className="text-[12px] text-[#71717A] hover:text-[#18181B] px-2 py-1 rounded hover:bg-[#F5F5F3] transition-all">
-                  Zoom In
+                <button className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded transition-all">
+                  <ZoomIn className="w-4 h-4" strokeWidth={1.5} />
                 </button>
-                <button className="text-[12px] text-[#71717A] hover:text-[#18181B] px-2 py-1 rounded hover:bg-[#F5F5F3] transition-all">
-                  Zoom Out
+                <button className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded transition-all">
+                  <ZoomIn className="w-4 h-4 rotate-180" strokeWidth={1.5} />
+                </button>
+                <div className="w-px h-4 bg-[#E4E4E7] mx-1" />
+                <button className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded transition-all">
+                  <SplitSquareHorizontal className="w-4 h-4" strokeWidth={1.5} />
                 </button>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <TimelineTrack label="Scenes" color="bg-[#8F8CFF]" segments={5} />
-              <TimelineTrack label="Voiceover" color="bg-[#10B981]" segments={3} />
-              <TimelineTrack label="Captions" color="bg-[#F59E0B]" segments={8} />
-              <TimelineTrack label="Annotations" color="bg-[#EC4899]" segments={4} />
+            <div className="p-3 space-y-2 overflow-auto h-[calc(200px-40px)]">
+              <TimelineTrack label="Video" color="#8F8CFF" segments={scenes} />
+              <TimelineTrack label="Voiceover" color="#10B981" segments={[
+                { start: 0, end: 30, label: "Intro" },
+                { start: 35, end: 80, label: "Main" },
+                { start: 85, end: 100, label: "Outro" }
+              ]} />
+              <TimelineTrack label="Captions" color="#F59E0B" segments={[
+                { start: 0, end: 25 },
+                { start: 25, end: 50 },
+                { start: 50, end: 75 },
+                { start: 75, end: 100 }
+              ]} />
+              <TimelineTrack label="Callouts" color="#EC4899" segments={[
+                { start: 10, end: 20 },
+                { start: 40, end: 55 },
+                { start: 70, end: 85 }
+              ]} />
+              <TimelineTrack label="Cursor" color="#71717A" segments={[
+                { start: 0, end: 100 }
+              ]} />
+              <TimelineTrack label="Zoom" color="#06B6D4" segments={[
+                { start: 15, end: 25 },
+                { start: 60, end: 70 }
+              ]} />
             </div>
           </div>
-        </main>
+        </div>
 
-        {/* Right Panel - AI Assistant */}
-        <aside className="w-[360px] border-l border-[#E8E8E6] bg-white flex flex-col">
+        {/* RIGHT PANEL - Contextual Editing - 320px */}
+        <aside className="w-[320px] border-l border-[#E4E4E7] bg-white flex flex-col">
           {/* Panel Tabs */}
-          <div className="flex border-b border-[#E8E8E6]">
-            <button
-              onClick={() => setActiveRightPanel("ai")}
-              className={`flex-1 px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
-                activeRightPanel === "ai"
-                  ? "text-[#8F8CFF] border-[#8F8CFF]"
-                  : "text-[#71717A] border-transparent hover:text-[#18181B]"
-              }`}
-            >
-              <Sparkles className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
-              AI Assistant
-            </button>
+          <div className="flex border-b border-[#E4E4E7]">
             <button
               onClick={() => setActiveRightPanel("properties")}
-              className={`flex-1 px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
+              className={`flex-1 px-4 py-3 text-[12px] font-medium border-b-2 transition-colors ${
                 activeRightPanel === "properties"
-                  ? "text-[#8F8CFF] border-[#8F8CFF]"
+                  ? "text-[#18181B] border-[#18181B]"
                   : "text-[#71717A] border-transparent hover:text-[#18181B]"
               }`}
             >
               Properties
             </button>
             <button
-              onClick={() => setActiveRightPanel("comments")}
-              className={`flex-1 px-4 py-3 text-[13px] font-medium border-b-2 transition-colors ${
-                activeRightPanel === "comments"
-                  ? "text-[#8F8CFF] border-[#8F8CFF]"
+              onClick={() => setActiveRightPanel("ai")}
+              className={`flex-1 px-4 py-3 text-[12px] font-medium border-b-2 transition-colors ${
+                activeRightPanel === "ai"
+                  ? "text-[#18181B] border-[#18181B]"
                   : "text-[#71717A] border-transparent hover:text-[#18181B]"
               }`}
             >
-              <MessageSquare className="w-4 h-4 inline mr-1.5" strokeWidth={1.5} />
-              Comments
+              AI Copilot
             </button>
           </div>
-
-          {/* AI Assistant Content */}
-          {activeRightPanel === "ai" && (
-            <div className="flex-1 flex flex-col overflow-hidden">
-              {/* AI Suggestions */}
-              <div className="p-4 border-b border-[#E8E8E6]">
-                <h3 className="text-[13px] font-semibold text-[#18181B] mb-3">Suggested Actions</h3>
-                <div className="space-y-2">
-                  <AISuggestion
-                    icon={<Zap className="w-4 h-4" strokeWidth={1.5} />}
-                    title="Improve Narration"
-                    description="AI can enhance voice quality"
-                  />
-                  <AISuggestion
-                    icon={<FileText className="w-4 h-4" strokeWidth={1.5} />}
-                    title="Generate Documentation"
-                    description="Create step-by-step guide"
-                  />
-                  <AISuggestion
-                    icon={<Languages className="w-4 h-4" strokeWidth={1.5} />}
-                    title="Translate Content"
-                    description="Add Spanish & French"
-                  />
-                  <AISuggestion
-                    icon={<Presentation className="w-4 h-4" strokeWidth={1.5} />}
-                    title="Create Interactive Demo"
-                    description="Generate clickable walkthrough"
-                  />
-                </div>
-              </div>
-
-              {/* AI Chat */}
-              <div className="flex-1 flex flex-col overflow-hidden">
-                <div className="flex-1 overflow-auto p-4 space-y-4">
-                  <AIMessage
-                    message="I've analyzed your video. Would you like me to generate documentation or create an interactive demo?"
-                    timestamp="2m ago"
-                  />
-                  <UserMessage
-                    message="Generate documentation"
-                    timestamp="1m ago"
-                  />
-                  <AIMessage
-                    message="I've created a comprehensive guide with 8 steps and screenshots. You can review it in the Documentation tab."
-                    timestamp="Just now"
-                    actions={["View Documentation", "Edit Content"]}
-                  />
-                </div>
-
-                {/* Chat Input */}
-                <div className="p-4 border-t border-[#E8E8E6]">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Ask AI to help..."
-                      className="w-full pl-4 pr-10 py-2.5 text-[13px] bg-[#F5F5F3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white transition-all"
-                    />
-                    <button className="absolute right-2 top-1/2 -translate-y-1/2 text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
-                      <ArrowRight className="w-5 h-5" strokeWidth={2} />
-                    </button>
-                  </div>
-                  <p className="text-[11px] text-[#A1A1AA] mt-2">
-                    Try: "Make this shorter" or "Translate to Spanish"
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Properties Panel */}
           {activeRightPanel === "properties" && (
             <div className="flex-1 overflow-auto p-4">
               <div className="space-y-6">
-                <PropertySection title="Scene Properties">
-                  <PropertyField label="Title" value="Setup Guide" />
-                  <PropertyField label="Duration" value="2:05" />
-                  <PropertyField label="Transition" value="Fade" />
+                {/* Scene Settings */}
+                <PropertySection title="Scene Settings">
+                  <PropertyField label="Title" value={scenes.find(s => s.id === selectedScene)?.title || ""} />
+                  <PropertyField label="Duration" value={scenes.find(s => s.id === selectedScene)?.duration || ""} />
+                  <PropertyField label="Start Time" value="1:36" />
+                  <PropertyField label="End Time" value="3:41" />
                 </PropertySection>
 
-                <PropertySection title="Video Settings">
-                  <PropertyField label="Resolution" value="1920x1080" />
-                  <PropertyField label="Frame Rate" value="30 fps" />
-                  <PropertyField label="Quality" value="High" />
+                {/* Visual Enhancements */}
+                <PropertySection title="Visual Enhancements">
+                  <PropertyToggle label="Auto Zoom" enabled={true} />
+                  <PropertyToggle label="Spotlight Click" enabled={false} />
+                  <PropertyToggle label="Highlight Cursor" enabled={true} />
+                  <PropertyToggle label="Blur Sensitive Data" enabled={false} />
+                  
+                  <div className="pt-2">
+                    <label className="text-[11px] text-[#71717A] mb-2 block">Aspect Ratio</label>
+                    <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF]">
+                      <option>16:9 (Landscape)</option>
+                      <option>9:16 (Portrait)</option>
+                      <option>1:1 (Square)</option>
+                      <option>4:5 (Instagram)</option>
+                    </select>
+                  </div>
                 </PropertySection>
 
-                <PropertySection title="Audio">
-                  <PropertyField label="Volume" value="100%" />
-                  <PropertyField label="Narration" value="AI Generated" />
-                  <PropertyField label="Background Music" value="None" />
+                {/* Narration */}
+                <PropertySection title="Narration">
+                  <div className="bg-[#F8F9FA] p-3 rounded-[8px] text-[12px] text-[#52525B] leading-relaxed mb-2">
+                    Now, let's dive into the setup process. Click on the settings icon in the top right.
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button className="px-3 py-2 text-[11px] font-medium text-[#71717A] bg-[#F8F9FA] rounded-[6px] hover:bg-[#F5F5F3] transition-all">
+                      Rewrite
+                    </button>
+                    <button className="px-3 py-2 text-[11px] font-medium text-[#71717A] bg-[#F8F9FA] rounded-[6px] hover:bg-[#F5F5F3] transition-all">
+                      Shorten
+                    </button>
+                    <button className="px-3 py-2 text-[11px] font-medium text-[#71717A] bg-[#F8F9FA] rounded-[6px] hover:bg-[#F5F5F3] transition-all">
+                      Expand
+                    </button>
+                    <button className="px-3 py-2 text-[11px] font-medium text-[#71717A] bg-[#F8F9FA] rounded-[6px] hover:bg-[#F5F5F3] transition-all">
+                      Change Tone
+                    </button>
+                  </div>
+                </PropertySection>
+
+                {/* Captions */}
+                <PropertySection title="Captions">
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-[11px] text-[#71717A] mb-2 block">Style</label>
+                      <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF]">
+                        <option>Modern</option>
+                        <option>Classic</option>
+                        <option>Minimal</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-[11px] text-[#71717A] mb-2 block">Position</label>
+                      <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF]">
+                        <option>Bottom Center</option>
+                        <option>Top Center</option>
+                        <option>Bottom Left</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-[11px] text-[#71717A] mb-2 block">Font Size</label>
+                      <input
+                        type="range"
+                        min="12"
+                        max="32"
+                        defaultValue="18"
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
                 </PropertySection>
               </div>
             </div>
           )}
 
-          {/* Comments Panel */}
-          {activeRightPanel === "comments" && (
-            <div className="flex-1 overflow-auto p-4">
-              <div className="space-y-4">
-                <Comment
-                  user="Sarah Chen"
-                  message="The setup guide section needs more detail"
-                  timestamp="2 hours ago"
-                  resolved={false}
+          {/* AI Copilot Panel */}
+          {activeRightPanel === "ai" && (
+            <div className="flex-1 flex flex-col overflow-hidden">
+              {/* Chat Messages */}
+              <div className="flex-1 overflow-auto p-4 space-y-4">
+                <AIMessage
+                  message="I've analyzed your video. I can help you improve narration, generate documentation, create translations, or add interactive elements."
+                  timestamp="2m ago"
                 />
-                <Comment
-                  user="Michael Park"
-                  message="Great work on the introduction!"
-                  timestamp="5 hours ago"
-                  resolved={true}
+                <UserMessage
+                  message="Make the narration more concise"
+                  timestamp="1m ago"
                 />
+                <AIMessage
+                  message="I've shortened the narration for Scene 3 from 45 seconds to 30 seconds while keeping the key points. Would you like me to apply this to other scenes?"
+                  timestamp="Just now"
+                  actions={["Apply to All", "View Changes"]}
+                />
+              </div>
+
+              {/* Quick Actions */}
+              <div className="border-t border-[#E4E4E7] p-3">
+                <div className="text-[11px] text-[#71717A] mb-2">Quick Actions</div>
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <QuickActionButton label="Shorten" />
+                  <QuickActionButton label="Translate" />
+                  <QuickActionButton label="Add Captions" />
+                  <QuickActionButton label="Generate Docs" />
+                </div>
+              </div>
+
+              {/* Chat Input */}
+              <div className="p-4 border-t border-[#E4E4E7]">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Ask AI to help..."
+                    className="w-full pl-4 pr-10 py-2.5 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white transition-all"
+                  />
+                  <button className="absolute right-2 top-1/2 -translate-y-1/2 text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
+                    <ArrowRight className="w-5 h-5" strokeWidth={2} />
+                  </button>
+                </div>
+                <p className="text-[10px] text-[#A1A1AA] mt-2">
+                  Try: "Remove filler words" or "Translate to Spanish"
+                </p>
               </div>
             </div>
           )}
@@ -400,189 +568,222 @@ export function EditorWorkspace() {
 
 // Helper Components
 
-interface NavSectionProps {
-  title: string
-  active?: boolean
-  onClick?: () => void
-  count?: number
-  status?: "complete" | "warning" | "processing"
-  aiGenerated?: boolean
-}
-
-function NavSection({ title, active, onClick, count, status, aiGenerated }: NavSectionProps) {
+function ToolbarButton({ icon: Icon, label }: { icon: React.ElementType; label: string }) {
   return (
     <button
-      onClick={onClick}
-      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all ${
-        active
-          ? "bg-[#F5F5FF] text-[#8F8CFF]"
-          : "text-[#52525B] hover:bg-[#F5F5F3] hover:text-[#18181B]"
-      }`}
+      className="p-2 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all group relative"
+      title={label}
     >
-      <span className="text-[13px] font-medium">{title}</span>
-      <div className="flex items-center gap-2">
-        {aiGenerated && <Sparkles className="w-3.5 h-3.5 text-[#8F8CFF]" strokeWidth={1.5} />}
-        {count !== undefined && <span className="text-[11px] text-[#A1A1AA]">{count}</span>}
-        {status === "complete" && <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" strokeWidth={1.5} />}
-        {status === "warning" && <AlertCircle className="w-3.5 h-3.5 text-[#F59E0B]" strokeWidth={1.5} />}
-        {status === "processing" && <Loader2 className="w-3.5 h-3.5 text-[#8F8CFF] animate-spin" strokeWidth={1.5} />}
-      </div>
+      <Icon className="w-4 h-4" strokeWidth={1.5} />
     </button>
   )
 }
 
-interface SceneItemProps {
-  title: string
-  duration: string
-  status: "complete" | "processing" | "pending"
-  active?: boolean
+function TabButton({ icon: Icon, label, active, onClick }: { 
+  icon: React.ElementType; 
+  label: string; 
+  active: boolean; 
+  onClick: () => void 
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex flex-col items-center gap-1 px-2 py-2 rounded-[6px] transition-all ${
+        active
+          ? "bg-[#F5F5FF] text-[#8F8CFF]"
+          : "text-[#71717A] hover:bg-[#F8F9FA] hover:text-[#18181B]"
+      }`}
+    >
+      <Icon className="w-4 h-4" strokeWidth={1.5} />
+      <span className="text-[10px] font-medium">{label}</span>
+    </button>
+  )
 }
 
-function SceneItem({ title, duration, status, active }: SceneItemProps) {
+interface SceneCardProps {
+  scene: {
+    id: number
+    title: string
+    duration: string
+    status: "complete" | "processing" | "pending"
+    thumbnail: string
+  }
+  active: boolean
+  onClick: () => void
+}
+
+function SceneCard({ scene, active, onClick }: SceneCardProps) {
   const statusColors = {
     complete: "bg-[#10B981]",
     processing: "bg-[#8F8CFF]",
-    pending: "bg-[#E8E8E6]"
+    pending: "bg-[#E4E4E7]"
   }
 
   return (
     <div
-      className={`flex items-center gap-2 px-3 py-2 rounded-md text-[12px] cursor-pointer transition-all ${
-        active ? "bg-[#F5F5FF]" : "hover:bg-[#F5F5F3]"
+      onClick={onClick}
+      className={`group cursor-pointer rounded-[8px] border transition-all ${
+        active
+          ? "border-[#8F8CFF] bg-[#F5F5FF]"
+          : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:shadow-sm"
       }`}
     >
-      <div className={`w-1.5 h-1.5 rounded-full ${statusColors[status]}`} />
-      <span className="flex-1 text-[#52525B]">{title}</span>
-      <span className="text-[#A1A1AA] font-mono text-[11px]">{duration}</span>
+      {/* Thumbnail */}
+      <div className="aspect-video bg-[#F8F9FA] rounded-t-[8px] overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8F8CFF]/10 to-[#8F8CFF]/5" />
+        <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-black/60 backdrop-blur-sm rounded text-[10px] text-white font-mono">
+          {scene.duration}
+        </div>
+      </div>
+      
+      {/* Info */}
+      <div className="p-2.5">
+        <div className="flex items-start justify-between gap-2 mb-1">
+          <span className="text-[12px] font-medium text-[#18181B] leading-tight flex-1">
+            {scene.title}
+          </span>
+          <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1 ${statusColors[scene.status]}`} />
+        </div>
+        <div className="text-[10px] text-[#71717A]">Scene {scene.id}</div>
+      </div>
     </div>
   )
 }
 
-interface StatusItemProps {
-  icon: React.ElementType
-  label: string
-  status: "complete" | "processing" | "warning"
+function ScriptBlock({ time, text, active }: { time: string; text: string; active?: boolean }) {
+  return (
+    <div className={`p-3 rounded-[8px] border transition-all ${
+      active ? "border-[#8F8CFF] bg-[#F5F5FF]" : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8]"
+    }`}>
+      <div className="text-[10px] text-[#71717A] font-mono mb-1.5">{time}</div>
+      <div className="text-[12px] text-[#18181B] leading-relaxed">{text}</div>
+    </div>
+  )
 }
 
-function StatusItem({ icon: Icon, label, status }: StatusItemProps) {
-  const colors = {
-    complete: "text-[#10B981]",
-    processing: "text-[#8F8CFF]",
-    warning: "text-[#F59E0B]"
+function CaptionBlock({ time, text }: { time: string; text: string }) {
+  return (
+    <div className="flex items-start gap-2 p-2 rounded-[6px] hover:bg-[#F8F9FA] transition-all cursor-pointer">
+      <span className="text-[10px] text-[#71717A] font-mono flex-shrink-0 mt-0.5">{time}</span>
+      <span className="text-[12px] text-[#18181B] flex-1">{text}</span>
+    </div>
+  )
+}
+
+function AssetThumbnail({ src }: { src: string }) {
+  return (
+    <div className="aspect-video bg-[#F8F9FA] rounded-[6px] overflow-hidden border border-[#E4E4E7] hover:border-[#D4D4D8] cursor-pointer transition-all group">
+      <div className="w-full h-full bg-gradient-to-br from-[#8F8CFF]/10 to-[#8F8CFF]/5 group-hover:from-[#8F8CFF]/20 group-hover:to-[#8F8CFF]/10 transition-all" />
+    </div>
+  )
+}
+
+function LanguageItem({ language, status }: { language: string; status: "complete" | "processing" | "pending" }) {
+  const statusConfig = {
+    complete: { icon: CheckCircle2, color: "text-[#10B981]", bg: "bg-[#10B981]/10", label: "Complete" },
+    processing: { icon: Loader2, color: "text-[#8F8CFF]", bg: "bg-[#8F8CFF]/10", label: "Processing" },
+    pending: { icon: Clock, color: "text-[#71717A]", bg: "bg-[#E4E4E7]", label: "Pending" }
   }
+  
+  const config = statusConfig[status]
+  const Icon = config.icon
 
   return (
-    <div className="flex items-center gap-2 text-[12px]">
-      <Icon className={`w-3.5 h-3.5 ${colors[status]} ${status === "processing" ? "animate-spin" : ""}`} strokeWidth={1.5} />
-      <span className="text-[#71717A]">{label}</span>
+    <div className="flex items-center justify-between p-3 bg-white border border-[#E4E4E7] rounded-[8px]">
+      <span className="text-[13px] font-medium text-[#18181B]">{language}</span>
+      <div className={`flex items-center gap-1.5 px-2 py-1 ${config.bg} rounded-full`}>
+        <Icon className={`w-3 h-3 ${config.color} ${status === "processing" ? "animate-spin" : ""}`} strokeWidth={1.5} />
+        <span className={`text-[10px] font-medium ${config.color}`}>{config.label}</span>
+      </div>
     </div>
+  )
+}
+
+function PreviewModeButton({ icon: Icon, active, onClick }: { 
+  icon: React.ElementType; 
+  active: boolean; 
+  onClick: () => void 
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`p-1.5 rounded-[6px] transition-all ${
+        active
+          ? "bg-white text-[#18181B] shadow-sm"
+          : "text-[#71717A] hover:text-[#18181B]"
+      }`}
+    >
+      <Icon className="w-4 h-4" strokeWidth={1.5} />
+    </button>
   )
 }
 
 interface TimelineTrackProps {
   label: string
   color: string
-  segments: number
+  segments: any[]
 }
 
 function TimelineTrack({ label, color, segments }: TimelineTrackProps) {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] text-[#71717A] w-20">{label}</span>
-      <div className="flex-1 h-8 bg-[#F5F5F3] rounded flex gap-1 p-1">
-        {Array.from({ length: segments }).map((_, i) => (
-          <div
-            key={i}
-            className={`flex-1 ${color} rounded opacity-80 hover:opacity-100 cursor-pointer transition-opacity`}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-interface AISuggestionProps {
-  icon: React.ReactNode
-  title: string
-  description: string
-}
-
-function AISuggestion({ icon, title, description }: AISuggestionProps) {
-  return (
-    <button className="w-full flex items-start gap-3 p-3 bg-[#F5F5FF] border border-[#E8E7FF] rounded-lg hover:border-[#8F8CFF] hover:shadow-sm transition-all text-left group">
-      <div className="p-2 bg-white rounded-md text-[#8F8CFF]">
-        {icon}
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-medium text-[#18181B] mb-0.5">{title}</div>
-        <div className="text-[11px] text-[#71717A]">{description}</div>
-      </div>
-      <ArrowRight className="w-4 h-4 text-[#8F8CFF] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" strokeWidth={1.5} />
-    </button>
-  )
-}
-
-interface AIMessageProps {
-  message: string
-  timestamp: string
-  actions?: string[]
-}
-
-function AIMessage({ message, timestamp, actions }: AIMessageProps) {
-  return (
-    <div className="flex gap-3">
-      <div className="w-7 h-7 rounded-full bg-[#F5F5FF] flex items-center justify-center flex-shrink-0">
-        <Sparkles className="w-4 h-4 text-[#8F8CFF]" strokeWidth={1.5} />
-      </div>
-      <div className="flex-1">
-        <div className="bg-[#F5F5FF] rounded-lg p-3 text-[13px] text-[#18181B] leading-relaxed">
-          {message}
+      <span className="text-[10px] text-[#71717A] w-16 flex-shrink-0">{label}</span>
+      <div className="flex-1 h-8 bg-[#F8F9FA] rounded-[6px] flex gap-0.5 p-0.5 relative">
+        {/* Timeline ruler */}
+        <div className="absolute inset-0 flex">
+          {[0, 25, 50, 75, 100].map((mark) => (
+            <div
+              key={mark}
+              className="absolute top-0 bottom-0 w-px bg-[#E4E4E7]"
+              style={{ left: `${mark}%` }}
+            />
+          ))}
         </div>
-        {actions && (
-          <div className="flex gap-2 mt-2">
-            {actions.map((action, i) => (
-              <button
+        
+        {/* Segments */}
+        {Array.isArray(segments) && segments.length > 0 && (
+          typeof segments[0] === 'object' && 'start' in segments[0] ? (
+            // Complex segments with start/end
+            segments.map((seg, i) => (
+              <div
                 key={i}
-                className="text-[12px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors"
+                className="absolute top-0.5 bottom-0.5 rounded-[4px] cursor-pointer hover:opacity-80 transition-all group"
+                style={{
+                  left: `${seg.start}%`,
+                  width: `${seg.end - seg.start}%`,
+                  backgroundColor: color
+                }}
               >
-                {action}
-              </button>
-            ))}
-          </div>
+                {seg.label && (
+                  <span className="absolute inset-0 flex items-center justify-center text-[9px] text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    {seg.label}
+                  </span>
+                )}
+              </div>
+            ))
+          ) : (
+            // Simple segments (scenes)
+            segments.map((seg, i) => (
+              <div
+                key={i}
+                className="flex-1 rounded-[4px] cursor-pointer hover:opacity-80 transition-all"
+                style={{ backgroundColor: color, opacity: 0.8 }}
+              />
+            ))
+          )
         )}
-        <div className="text-[11px] text-[#A1A1AA] mt-1">{timestamp}</div>
       </div>
+      <button className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded transition-all flex-shrink-0">
+        <MoreHorizontal className="w-3.5 h-3.5" strokeWidth={1.5} />
+      </button>
     </div>
   )
 }
 
-interface UserMessageProps {
-  message: string
-  timestamp: string
-}
-
-function UserMessage({ message, timestamp }: UserMessageProps) {
-  return (
-    <div className="flex gap-3 justify-end">
-      <div className="flex-1 text-right">
-        <div className="bg-[#18181B] text-white rounded-lg p-3 text-[13px] leading-relaxed inline-block">
-          {message}
-        </div>
-        <div className="text-[11px] text-[#A1A1AA] mt-1">{timestamp}</div>
-      </div>
-    </div>
-  )
-}
-
-interface PropertySectionProps {
-  title: string
-  children: React.ReactNode
-}
-
-function PropertySection({ title, children }: PropertySectionProps) {
+function PropertySection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="text-[12px] font-semibold text-[#18181B] mb-3">{title}</h4>
+      <h4 className="text-[11px] font-semibold text-[#18181B] mb-3">{title}</h4>
       <div className="space-y-3">
         {children}
       </div>
@@ -590,57 +791,88 @@ function PropertySection({ title, children }: PropertySectionProps) {
   )
 }
 
-interface PropertyFieldProps {
-  label: string
-  value: string
-}
-
-function PropertyField({ label, value }: PropertyFieldProps) {
+function PropertyField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <label className="text-[11px] text-[#71717A] mb-1 block">{label}</label>
+      <label className="text-[11px] text-[#71717A] mb-1.5 block">{label}</label>
       <input
         type="text"
         value={value}
-        className="w-full px-3 py-2 text-[13px] bg-[#F5F5F3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white transition-all"
+        className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] focus:outline-none focus:ring-2 focus:ring-[#8F8CFF] focus:bg-white transition-all"
         readOnly
       />
     </div>
   )
 }
 
-interface CommentProps {
-  user: string
-  message: string
-  timestamp: string
-  resolved: boolean
+function PropertyToggle({ label, enabled }: { label: string; enabled: boolean }) {
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-[12px] text-[#18181B]">{label}</span>
+      <button
+        className={`relative w-10 h-5 rounded-full transition-all ${
+          enabled ? "bg-[#8F8CFF]" : "bg-[#E4E4E7]"
+        }`}
+      >
+        <div
+          className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-all ${
+            enabled ? "left-5" : "left-0.5"
+          }`}
+        />
+      </button>
+    </div>
+  )
 }
 
-function Comment({ user, message, timestamp, resolved }: CommentProps) {
+function AIMessage({ message, timestamp, actions }: { 
+  message: string; 
+  timestamp: string; 
+  actions?: string[] 
+}) {
   return (
-    <div className={`p-3 rounded-lg border ${resolved ? "bg-[#F5F5F3] border-[#E8E8E6]" : "bg-white border-[#E8E8E6]"}`}>
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-[#E8E8E6] flex items-center justify-center text-[11px] font-medium text-[#52525B]">
-            {user.charAt(0)}
-          </div>
-          <span className="text-[12px] font-medium text-[#18181B]">{user}</span>
-        </div>
-        {resolved && (
-          <span className="text-[10px] bg-[#10B981]/10 text-[#10B981] px-2 py-0.5 rounded-full font-medium">
-            Resolved
-          </span>
-        )}
+    <div className="flex gap-2">
+      <div className="w-6 h-6 rounded-full bg-[#F5F5FF] flex items-center justify-center flex-shrink-0">
+        <Sparkles className="w-3.5 h-3.5 text-[#8F8CFF]" strokeWidth={1.5} />
       </div>
-      <p className="text-[13px] text-[#52525B] leading-relaxed mb-2">{message}</p>
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] text-[#A1A1AA]">{timestamp}</span>
-        {!resolved && (
-          <button className="text-[11px] text-[#8F8CFF] hover:text-[#7B77FF] font-medium transition-colors">
-            Resolve
-          </button>
+      <div className="flex-1">
+        <div className="bg-[#F8F9FA] rounded-[8px] p-3 text-[12px] text-[#18181B] leading-relaxed">
+          {message}
+        </div>
+        {actions && (
+          <div className="flex gap-2 mt-2">
+            {actions.map((action, i) => (
+              <button
+                key={i}
+                className="text-[11px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors"
+              >
+                {action}
+              </button>
+            ))}
+          </div>
         )}
+        <div className="text-[10px] text-[#A1A1AA] mt-1">{timestamp}</div>
       </div>
     </div>
+  )
+}
+
+function UserMessage({ message, timestamp }: { message: string; timestamp: string }) {
+  return (
+    <div className="flex gap-2 justify-end">
+      <div className="flex-1 text-right">
+        <div className="bg-[#18181B] text-white rounded-[8px] p-3 text-[12px] leading-relaxed inline-block">
+          {message}
+        </div>
+        <div className="text-[10px] text-[#A1A1AA] mt-1">{timestamp}</div>
+      </div>
+    </div>
+  )
+}
+
+function QuickActionButton({ label }: { label: string }) {
+  return (
+    <button className="px-3 py-2 text-[11px] font-medium text-[#71717A] bg-[#F8F9FA] rounded-[6px] hover:bg-[#F5F5F3] hover:text-[#18181B] transition-all">
+      {label}
+    </button>
   )
 }
