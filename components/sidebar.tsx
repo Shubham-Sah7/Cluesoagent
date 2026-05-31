@@ -75,10 +75,10 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-[296px] border-r border-[#E8E8E6] bg-white flex flex-col min-h-screen shrink-0">
+    <aside className="w-[240px] border-r border-[#F0F0F0] bg-white flex flex-col min-h-screen shrink-0">
 
       {/* Logo — official Trupeer asset */}
-      <div className="px-8 pt-8 pb-10">
+      <div className="px-6 pt-8 pb-10">
         <div className="relative h-9 w-[165px]">
           <Image
             src="/images/trupeer.jpeg"
@@ -91,7 +91,7 @@ export function Sidebar() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 px-5 space-y-10">
+      <nav className="flex-1 px-4 space-y-12">
         
         {/* Primary Section */}
         <div>
@@ -100,7 +100,7 @@ export function Sidebar() {
               Primary
             </span>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {primaryNav.map((item) => (
               <NavItem
                 key={item.href}
@@ -120,7 +120,7 @@ export function Sidebar() {
               Creation
             </span>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {creationNav.map((item) => (
               <NavItem
                 key={item.href}
@@ -141,7 +141,7 @@ export function Sidebar() {
               Workspace
             </span>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-0.5">
             {workspaceNav.map((item) => (
               <NavItem
                 key={item.href}
@@ -157,10 +157,10 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom */}
-      <div className="px-5 pb-6 space-y-4">
+      <div className="px-4 pb-6 space-y-4">
 
         {/* What's new */}
-        <button className="flex items-center gap-3 w-full px-3 py-3 text-[#8F8CFF] hover:text-[#7B77FF] hover:bg-[#FAFAFF] text-[15px] font-medium rounded-lg transition-all duration-200">
+        <button className="flex items-center gap-3 w-full px-3 py-2.5 text-[#8F8CFF] hover:text-[#7B77FF] hover:bg-[#FAFAFF] text-[14px] font-medium rounded-lg transition-all duration-200">
           <Bell className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={2} />
           <span>What&apos;s new</span>
         </button>
@@ -186,7 +186,7 @@ export function Sidebar() {
         </div>
 
         {/* User profile */}
-        <button className="w-full flex items-center gap-3 px-3 py-3 hover:bg-[#FAFAFA] rounded-lg transition-all duration-200 group">
+        <button className="w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#FAFAFA] rounded-lg transition-all duration-200 group">
           <div className="w-8 h-8 rounded-full bg-[#8F8CFF] flex-shrink-0 flex items-center justify-center text-white text-[13px] font-semibold">
             S
           </div>
@@ -220,22 +220,22 @@ function NavItem({ icon: Icon, customIcon: CustomIcon, label, href, active }: Na
     <Link
       href={href}
       className={cn(
-        "group relative flex items-center gap-3 w-full px-3 py-2.5 rounded-[10px] text-[15px] font-medium transition-all duration-200",
+        "group relative flex items-center gap-3 w-full px-3 py-2 rounded-[8px] text-[15px] font-medium transition-all duration-200",
         active
-          ? "text-[#18181B] bg-[#F5F5FF]"
+          ? "text-[#18181B] bg-[#F8F9FA]"
           : "text-[#18181B] hover:bg-[#FAFAFA]"
       )}
     >
-      {/* Thin left indicator for active state */}
+      {/* Subtle left indicator for active state */}
       {active && (
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[18px] bg-[#8F8CFF] rounded-r-full" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[16px] bg-[#8F8CFF] rounded-r-full" />
       )}
       
       {CustomIcon ? (
         <CustomIcon
           className={cn(
             "flex-shrink-0 transition-colors duration-200",
-            active ? "text-[#8F8CFF]" : "text-[#52525B] group-hover:text-[#18181B]"
+            active ? "text-[#8F8CFF]" : "text-[#71717A] group-hover:text-[#18181B]"
           )}
           strokeWidth={2}
         />
@@ -243,7 +243,7 @@ function NavItem({ icon: Icon, customIcon: CustomIcon, label, href, active }: Na
         <Icon
           className={cn(
             "w-[18px] h-[18px] flex-shrink-0 transition-colors duration-200",
-            active ? "text-[#8F8CFF]" : "text-[#52525B] group-hover:text-[#18181B]"
+            active ? "text-[#8F8CFF]" : "text-[#71717A] group-hover:text-[#18181B]"
           )}
           strokeWidth={2}
         />

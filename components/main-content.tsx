@@ -53,37 +53,36 @@ export function MainContent() {
         onTemplateClick={() => setShowTemplateFlow(true)}
       />
       
-      <div className="px-12 py-20 max-w-[1800px] mx-auto">
+      <div className="px-12 py-12 max-w-[1800px] mx-auto">
 
-        {/* Hero */}
-        <section className="mb-16 max-w-[880px]">
-          <h1 className="font-serif text-[54px] leading-[1.15] tracking-[-0.02em] text-[#111111] mb-6 max-w-[820px]">
-            Create product stories people{" "}
-            <span className="text-[#8F8CFF]">actually understand</span>.
+        {/* Hero - Reduced by 30% */}
+        <section className="mb-12 max-w-[880px]">
+          <h1 className="font-serif text-[42px] leading-[1.15] tracking-[-0.02em] text-[#18181B] mb-4 max-w-[820px]">
+            Create product stories people actually understand.
           </h1>
-          <p className="text-[17px] leading-[1.65] text-[#3D3D3D] max-w-[680px] mb-12">
-            Turn rough recordings into polished videos, docs, and demos in minutes.
+          <p className="text-[16px] leading-[1.6] text-[#52525B] max-w-[680px]">
+            Turn recordings into polished videos, docs, and demos in minutes.
           </p>
         </section>
 
-        {/* Quick Actions */}
-        <section className="mb-24 max-w-[1400px]">
-          <div className="grid grid-cols-3 gap-5">
+        {/* Quick Actions - Reduced height to 72px */}
+        <section className="mb-16 max-w-[1400px]">
+          <div className="grid grid-cols-3 gap-4">
             <QuickAction
-              icon={<Video className="w-5 h-5" strokeWidth={1.5} />}
+              icon={<Video className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Record Screen"
               description="Capture your screen with narration"
               onClick={() => setShowRecordFlow(true)}
               primary
             />
             <QuickAction
-              icon={<Upload className="w-5 h-5" strokeWidth={1.5} />}
+              icon={<Upload className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Upload Recording"
               description="Transform an existing video"
               onClick={() => setShowUploadFlow(true)}
             />
             <QuickAction
-              icon={<Layers className="w-5 h-5" strokeWidth={1.5} />}
+              icon={<Layers className="w-[18px] h-[18px]" strokeWidth={1.5} />}
               title="Start from Template"
               description="Pick a proven structure"
               onClick={() => setShowTemplateFlow(true)}
@@ -91,10 +90,10 @@ export function MainContent() {
           </div>
         </section>
 
-        {/* Continue Working */}
-        <section className="mb-24 max-w-[1400px]">
+        {/* Continue Working - 64px spacing */}
+        <section className="mb-16 max-w-[1400px]">
           <SectionHeader title="Continue Working" action="View all" />
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-5">
             <ProjectCard
               title="Product Onboarding Flow"
               type="Interactive Demo"
@@ -125,17 +124,17 @@ export function MainContent() {
           </div>
         </section>
 
-        {/* Recommended Next Steps */}
-        <section className="mb-24 max-w-[1400px]">
-          <SectionHeader title="Recommended Next Steps" />
-          <div className="grid grid-cols-3 gap-5">
+        {/* Suggested Next Steps - Removed AI language, 64px spacing */}
+        <section className="mb-16 max-w-[1400px]">
+          <SectionHeader title="Suggested Next Steps" />
+          <div className="grid grid-cols-3 gap-4">
             <NextStepCard
               title="Continue onboarding flow"
               description="Resume editing your interactive demo."
               action="Resume"
             />
             <NextStepCard
-              title="Generate API documentation"
+              title="Generate documentation"
               description="Create docs from your latest recording."
               action="Generate"
             />
@@ -150,7 +149,7 @@ export function MainContent() {
         {/* Popular Templates */}
         <section className="max-w-[1400px]">
           <SectionHeader title="Popular Templates" action="Browse all" />
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-4 gap-4">
             <TemplateCard
               title="Product Demo"
               category="Sales"
@@ -185,10 +184,10 @@ export function MainContent() {
 
 function SectionHeader({ title, action }: { title: string; action?: string }) {
   return (
-    <div className="flex items-center justify-between mb-7">
-      <h2 className="text-[22px] font-semibold text-[#111111]">{title}</h2>
+    <div className="flex items-center justify-between mb-5">
+      <h2 className="text-[20px] font-semibold text-[#18181B]">{title}</h2>
       {action && (
-        <button className="text-[14px] text-[#8F8CFF] hover:text-[#7B77FF] font-medium transition-colors flex items-center gap-1.5">
+        <button className="text-[13px] text-[#8F8CFF] hover:text-[#7B77FF] font-medium transition-colors flex items-center gap-1.5">
           {action}
           <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
@@ -210,15 +209,15 @@ function QuickAction({ icon, title, description, onClick, primary }: QuickAction
     <button
       onClick={onClick}
       className={cn(
-        "group flex items-start gap-4 p-6 rounded-[12px] border text-left transition-all duration-200 active:scale-[0.98]",
+        "group flex items-center gap-3.5 px-5 py-4 rounded-[10px] border text-left transition-all duration-200 active:scale-[0.98]",
         primary
-          ? "bg-[#8F8CFF] border-[#8F8CFF] hover:bg-[#7B77FF] hover:border-[#7B77FF] hover:shadow-[0_8px_30px_rgba(143,140,255,0.35)]"
-          : "border-[#D4D4D8] bg-white hover:border-[#8F8CFF] hover:shadow-lg"
+          ? "bg-[#8F8CFF] border-[#8F8CFF] hover:bg-[#7B77FF] hover:border-[#7B77FF] hover:shadow-lg"
+          : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:shadow-md"
       )}
     >
       <div className={cn(
-        "p-2.5 rounded-[10px] flex-shrink-0 transition-colors duration-200",
-        primary ? "bg-white/15" : "bg-[#F4F4F5] group-hover:bg-[#F5F5FF]"
+        "p-2 rounded-[8px] flex-shrink-0 transition-colors duration-200",
+        primary ? "bg-white/15" : "bg-[#F8F9FA] group-hover:bg-[#F5F5FF]"
       )}>
         <div className={cn(
           "transition-colors duration-200",
@@ -226,10 +225,10 @@ function QuickAction({ icon, title, description, onClick, primary }: QuickAction
         )}>{icon}</div>
       </div>
       <div className="flex-1 min-w-0">
-        <div className={cn("font-semibold text-[16px] mb-1.5", primary ? "text-white" : "text-[#111111]")}>
+        <div className={cn("font-semibold text-[15px] mb-0.5", primary ? "text-white" : "text-[#18181B]")}>
           {title}
         </div>
-        <div className={cn("text-[14px] leading-relaxed", primary ? "text-white/75" : "text-[#52525B]")}>
+        <div className={cn("text-[13px]", primary ? "text-white/80" : "text-[#71717A]")}>
           {description}
         </div>
       </div>
@@ -249,9 +248,9 @@ interface ProjectCardProps {
 
 function ProjectCard({ title, type, duration, progress, lastEdited, collaborators, screenshotIndex }: ProjectCardProps) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[14px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
-      {/* Real screenshot thumbnail */}
-      <div className="aspect-[16/10] bg-[#F8F9FA] relative overflow-hidden">
+    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+      {/* Reduced thumbnail height by 15% */}
+      <div className="aspect-[16/9] bg-[#F8F9FA] relative overflow-hidden">
         <Image
           src={getScreenshot(screenshotIndex)}
           alt={title}
@@ -261,45 +260,29 @@ function ProjectCard({ title, type, duration, progress, lastEdited, collaborator
         />
         
         {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-all duration-200">
-          <div className="w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-200">
-            <Play className="w-4.5 h-4.5 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} fill="#8F8CFF" />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-all duration-200">
+          <div className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200">
+            <Play className="w-4 h-4 text-[#8F8CFF] ml-0.5" strokeWidth={1.5} fill="#8F8CFF" />
           </div>
-        </div>
-        
-        {/* Duration badge */}
-        <div className="absolute bottom-3 right-3 bg-black/75 text-white text-[11px] font-semibold px-2 py-1 rounded-[8px] backdrop-blur-sm">
-          {duration}
         </div>
       </div>
       
-      {/* Card content */}
-      <div className="p-5">
-        <div className="font-semibold text-[16px] text-[#111111] mb-3 leading-snug">{title}</div>
+      {/* Simplified card content */}
+      <div className="p-4">
+        <div className="font-semibold text-[15px] text-[#18181B] mb-2 leading-snug">{title}</div>
         
-        {/* Progress */}
-        <div className="flex items-center justify-between text-[13px] mb-2">
-          <span className="text-[#71717A] font-medium">{type}</span>
-          <span className="text-[#8F8CFF] font-semibold">{progress}%</span>
+        <div className="text-[13px] text-[#71717A] mb-3">{type}</div>
+        
+        {/* Progress only */}
+        <div className="flex items-center justify-between text-[12px] mb-1.5">
+          <span className="text-[#71717A]">Progress</span>
+          <span className="text-[#8F8CFF] font-medium">{progress}%</span>
         </div>
-        <div className="w-full bg-[#F4F4F5] h-1 rounded-full overflow-hidden mb-4">
+        <div className="w-full bg-[#F4F4F5] h-1 rounded-full overflow-hidden">
           <div 
             className="bg-[#8F8CFF] h-full rounded-full transition-all duration-300" 
             style={{ width: `${progress}%` }} 
           />
-        </div>
-        
-        {/* Footer */}
-        <div className="flex items-center justify-between">
-          <span className="text-[12px] text-[#A1A1AA] font-medium">{lastEdited}</span>
-          <div className="flex items-center">
-            {Array.from({ length: Math.min(collaborators, 3) }).map((_, i) => (
-              <div 
-                key={i} 
-                className="w-6 h-6 rounded-full bg-[#E4E4E7] border-2 border-white -ml-1.5 first:ml-0" 
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -444,9 +427,9 @@ interface NextStepCardProps {
 
 function NextStepCard({ title, description, action }: NextStepCardProps) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] p-5 hover:border-[#D4D4D8] hover:shadow-md transition-all duration-200 cursor-pointer">
-      <h3 className="font-semibold text-[15px] text-[#111111] mb-2">{title}</h3>
-      <p className="text-[14px] text-[#52525B] leading-relaxed mb-4">{description}</p>
+    <div className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#D4D4D8] hover:shadow-sm transition-all duration-200 cursor-pointer">
+      <h3 className="font-semibold text-[14px] text-[#18181B] mb-1.5">{title}</h3>
+      <p className="text-[13px] text-[#71717A] leading-relaxed mb-3">{description}</p>
       <button className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#8F8CFF] hover:text-[#7B77FF] transition-colors">
         {action}
         <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -464,39 +447,31 @@ interface TemplateCardProps {
 
 function TemplateCard({ title, category, uses, src }: TemplateCardProps) {
   return (
-    <div className="group bg-white border border-[#E4E4E7] rounded-[14px] overflow-hidden hover:border-[#8F8CFF]/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer">
-      {/* Thumbnail — image is the primary visual, no gray fallback visible */}
+    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+      {/* Thumbnail */}
       <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
         <Image
           src={src}
           alt={title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           priority={false}
         />
-        {/* Hover overlay with Use Template CTA */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-200 flex items-center justify-center">
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white text-[#111111] font-semibold text-[13px] px-4 py-2 rounded-xl shadow-lg">
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-200 flex items-center justify-center">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white text-[#18181B] font-semibold text-[12px] px-3.5 py-1.5 rounded-lg shadow-lg">
             Use Template
           </span>
-        </div>
-        {/* Category pill — bottom-left overlay */}
-        <div className="absolute bottom-2.5 left-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold uppercase tracking-wide px-2 py-1 rounded-lg">
-          {category}
         </div>
       </div>
 
       {/* Card footer */}
-      <div className="px-4 py-3 flex items-center justify-between border-t border-[#F0F0F0]">
+      <div className="px-3.5 py-3 flex items-center justify-between">
         <div>
-          <div className="font-semibold text-[13px] text-[#111111] leading-tight">{title}</div>
+          <div className="font-semibold text-[13px] text-[#18181B] leading-tight">{title}</div>
           <div className="text-[11px] text-[#A1A1AA] mt-0.5">{uses} uses</div>
         </div>
-        <Play
-          className="w-4 h-4 text-[#BDBDBD] group-hover:text-[#8F8CFF] transition-colors flex-shrink-0"
-          strokeWidth={1.5}
-        />
       </div>
     </div>
   )
