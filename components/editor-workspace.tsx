@@ -10,10 +10,15 @@ import {
   Maximize, Grid3x3, Move, MousePointer, Eye, EyeOff,
   Settings, ArrowRight, Sparkles, FileText, Languages,
   Presentation, Zap, CheckCircle2, AlertCircle, Loader2,
-  MoreHorizontal, Trash2, SplitSquareHorizontal, Layers
+  MoreHorizontal, Trash2, SplitSquareHorizontal, Layers,
+  ArrowLeft
 } from "lucide-react"
 
-export function EditorWorkspace() {
+interface EditorWorkspaceProps {
+  onBack?: () => void
+}
+
+export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeLeftTab, setActiveLeftTab] = useState<"scenes" | "script" | "captions" | "assets" | "voiceover" | "documentation" | "demo" | "translations">("scenes")
   const [selectedScene, setSelectedScene] = useState(2)
@@ -33,6 +38,17 @@ export function EditorWorkspace() {
       {/* Top Toolbar */}
       <header className="h-12 border-b border-[#E4E4E7] bg-white flex items-center justify-between px-4">
         <div className="flex items-center gap-3">
+          {/* Back Button */}
+          <button
+            onClick={onBack}
+            className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all"
+            title="Back to projects"
+          >
+            <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
+          </button>
+          
+          <div className="w-px h-5 bg-[#E4E4E7]" />
+          
           <h1 className="text-[14px] font-semibold text-[#18181B]">Product Onboarding Flow</h1>
           <div className="flex items-center gap-1.5 text-[11px] text-[#A1A1AA]">
             <Clock className="w-3 h-3" strokeWidth={1.5} />
