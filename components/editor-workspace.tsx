@@ -32,24 +32,24 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
   const currentStep = steps.find(s => s.id === selectedStep)
 
   return (
-    <div className="flex flex-col h-screen bg-[#FAFAFA] dark:bg-[#0A0A0B]">
+    <div className="flex flex-col h-screen bg-[#FAFAFA]">
 
       {/* Top Toolbar */}
-      <header className="h-12 border-b border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#111113] flex items-center justify-between px-4 shrink-0">
+      <header className="h-12 border-b border-[#E4E4E7] bg-white flex items-center justify-between px-4 shrink-0">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="p-1.5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#18181B] dark:hover:text-[#FAFAFA] hover:bg-[#F8F9FA] dark:hover:bg-[#26262B] rounded-[6px] transition-all"
+            className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all"
           >
             <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
           </button>
-          <div className="w-px h-5 bg-[#E4E4E7] dark:bg-[#26262B]" />
-          <h1 className="text-[14px] font-semibold text-[#18181B] dark:text-[#FAFAFA]">Product Onboarding Guide</h1>
-          <div className="flex items-center gap-1.5 text-[11px] text-[#A1A1AA] dark:text-[#52525B]">
+          <div className="w-px h-5 bg-[#E4E4E7]" />
+          <h1 className="text-[14px] font-semibold text-[#18181B]">Product Onboarding Guide</h1>
+          <div className="flex items-center gap-1.5 text-[11px] text-[#A1A1AA]">
             <Clock className="w-3 h-3" strokeWidth={1.5} />
             <span>Saved 2m ago</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#ECFDF5] dark:bg-[#052E1C] text-[#059669] text-[11px] font-semibold rounded-full">
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#ECFDF5] text-[#059669] text-[11px] font-semibold rounded-full">
             <CheckCircle2 className="w-3 h-3" strokeWidth={2} />
             Published
           </div>
@@ -64,27 +64,27 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
             { icon: MousePointer, label: "Add hotspot" },
           ].map(({ icon: Icon, label }) => (
             <button key={label} title={label}
-              className="p-2 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#18181B] dark:hover:text-[#FAFAFA] hover:bg-[#F8F9FA] dark:hover:bg-[#26262B] rounded-[6px] transition-all">
+              className="p-2 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
               <Icon className="w-4 h-4" strokeWidth={1.5} />
             </button>
           ))}
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 text-[12px] text-[#71717A] dark:text-[#A1A1AA]">
+          <div className="flex items-center gap-1 text-[12px] text-[#71717A]">
             <Eye className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span>284 views</span>
           </div>
-          <div className="flex items-center gap-1 text-[12px] text-[#71717A] dark:text-[#A1A1AA]">
+          <div className="flex items-center gap-1 text-[12px] text-[#71717A]">
             <Users className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span>3</span>
           </div>
-          <div className="w-px h-4 bg-[#E4E4E7] dark:bg-[#26262B]" />
-          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] dark:text-[#A1A1AA] bg-white dark:bg-[#1C1C1F] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] transition-all flex items-center gap-1.5">
+          <div className="w-px h-4 bg-[#E4E4E7]" />
+          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] bg-white border border-[#E4E4E7] rounded-[8px] hover:border-[#D4D4D8] transition-all flex items-center gap-1.5">
             <Share2 className="w-3.5 h-3.5" strokeWidth={1.5} />
             Share
           </button>
-          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] dark:text-[#A1A1AA] bg-white dark:bg-[#1C1C1F] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] transition-all flex items-center gap-1.5">
+          <button className="px-3 py-1.5 text-[12px] font-medium text-[#71717A] bg-white border border-[#E4E4E7] rounded-[8px] hover:border-[#D4D4D8] transition-all flex items-center gap-1.5">
             <Download className="w-3.5 h-3.5" strokeWidth={1.5} />
             Export
           </button>
@@ -99,9 +99,9 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
       <div className="flex-1 flex overflow-hidden">
 
         {/* LEFT SIDEBAR */}
-        <aside className="w-[240px] border-r border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#111113] flex flex-col shrink-0">
+        <aside className="w-[240px] border-r border-[#E4E4E7] bg-white flex flex-col shrink-0">
           {/* Tab strip */}
-          <div className="border-b border-[#E4E4E7] dark:border-[#26262B] p-2">
+          <div className="border-b border-[#E4E4E7] p-2">
             <div className="grid grid-cols-4 gap-1">
               <TabBtn icon={LayoutList}  label="Overview"    active={activeLeftTab === "overview"}     onClick={() => setActiveLeftTab("overview")} />
               <TabBtn icon={AlignLeft}   label="Steps"       active={activeLeftTab === "steps"}        onClick={() => setActiveLeftTab("steps")} />
@@ -123,9 +123,9 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                   ["Steps", "5"], ["Screenshots", "12"], ["Words", "1,840"],
                   ["Views", "284"], ["Completion", "78%"], ["Languages", "3"],
                 ].map(([label, value]) => (
-                  <div key={label} className="flex items-center justify-between py-2.5 border-b border-[#F4F4F5] dark:border-[#1C1C1F]">
-                    <span className="text-[12px] text-[#71717A] dark:text-[#A1A1AA]">{label}</span>
-                    <span className="text-[13px] font-semibold text-[#18181B] dark:text-[#FAFAFA]">{value}</span>
+                  <div key={label} className="flex items-center justify-between py-2.5 border-b border-[#F4F4F5]">
+                    <span className="text-[12px] text-[#71717A]">{label}</span>
+                    <span className="text-[13px] font-semibold text-[#18181B]">{value}</span>
                   </div>
                 ))}
               </div>
@@ -136,7 +136,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 {steps.map((step) => (
                   <StepCard key={step.id} step={step} active={selectedStep === step.id} onClick={() => setSelectedStep(step.id)} />
                 ))}
-                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] border border-dashed border-[#F1D6F1] dark:border-[#3A2A3A] rounded-[8px] hover:bg-[#FDF4FD] dark:hover:bg-[#2A1A2A] transition-all flex items-center justify-center gap-1.5">
+                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] border border-dashed border-[#F1D6F1] rounded-[8px] hover:bg-[#FDF4FD] transition-all flex items-center justify-center gap-1.5">
                   <Plus className="w-3.5 h-3.5" strokeWidth={2} />
                   Add Step
                 </button>
@@ -145,13 +145,13 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
             {activeLeftTab === "screenshots" && (
               <div className="p-3">
-                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] bg-[#FDF4FD] dark:bg-[#2A1A2A] border border-[#F1D6F1] dark:border-[#3A2A3A] rounded-[8px] hover:bg-[#F1D6F1] dark:hover:bg-[#3A2030] transition-all mb-3 flex items-center justify-center gap-1.5">
+                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] bg-[#FDF4FD] border border-[#F1D6F1] rounded-[8px] hover:bg-[#F1D6F1] transition-all mb-3 flex items-center justify-center gap-1.5">
                   <Plus className="w-3.5 h-3.5" strokeWidth={2} />
                   Add Screenshot
                 </button>
                 <div className="grid grid-cols-2 gap-2">
                   {[1,2,3,4].map((i) => (
-                    <div key={i} className="aspect-video rounded-[6px] overflow-hidden border border-[#E4E4E7] dark:border-[#26262B] hover:border-[#D85BD6] cursor-pointer transition-all relative">
+                    <div key={i} className="aspect-video rounded-[6px] overflow-hidden border border-[#E4E4E7] hover:border-[#D85BD6] cursor-pointer transition-all relative">
                       <Image src={`/images/screenshot-${i}.png`} alt={`Screenshot ${i}`} fill className="object-cover" sizes="120px" />
                     </div>
                   ))}
@@ -168,9 +168,9 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                   { type: "Note",    preview: "Tip: You can also access settings from..." },
                   { type: "Warning", preview: "Important: Save your changes before..." },
                 ].map(({ type, preview }) => (
-                  <div key={type} className="p-2.5 rounded-[8px] border border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#17171A] hover:border-[#D85BD6] cursor-pointer transition-all">
-                    <div className="text-[10px] font-semibold text-[#A1A1AA] dark:text-[#52525B] uppercase tracking-wide mb-1">{type}</div>
-                    <div className="text-[12px] text-[#52525B] dark:text-[#A1A1AA] truncate">{preview}</div>
+                  <div key={type} className="p-2.5 rounded-[8px] border border-[#E4E4E7] bg-white hover:border-[#D85BD6] cursor-pointer transition-all">
+                    <div className="text-[10px] font-semibold text-[#A1A1AA] uppercase tracking-wide mb-1">{type}</div>
+                    <div className="text-[12px] text-[#52525B] truncate">{preview}</div>
                   </div>
                 ))}
               </div>
@@ -178,17 +178,17 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
             {activeLeftTab === "variables" && (
               <div className="p-4 space-y-3">
-                <p className="text-[11px] text-[#71717A] dark:text-[#A1A1AA]">Variables are auto-filled when generating docs.</p>
+                <p className="text-[11px] text-[#71717A]">Variables are auto-filled when generating docs.</p>
                 {[
                   ["product_name", "Clueso"], ["company_name", "Acme Corp"],
                   ["support_email", "help@acme.com"], ["doc_version", "v2.1"],
                 ].map(([name, value]) => (
                   <div key={name} className="flex items-center gap-2">
-                    <code className="text-[11px] text-[#D85BD6] bg-[#FDF4FD] dark:bg-[#2A1A2A] px-2 py-1 rounded flex-1 truncate">{`{{${name}}}`}</code>
-                    <span className="text-[12px] text-[#52525B] dark:text-[#A1A1AA] flex-1 truncate">{value}</span>
+                    <code className="text-[11px] text-[#D85BD6] bg-[#FDF4FD] px-2 py-1 rounded flex-1 truncate">{`{{${name}}}`}</code>
+                    <span className="text-[12px] text-[#52525B] flex-1 truncate">{value}</span>
                   </div>
                 ))}
-                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] border border-dashed border-[#F1D6F1] dark:border-[#3A2A3A] rounded-[8px] hover:bg-[#FDF4FD] dark:hover:bg-[#2A1A2A] transition-all flex items-center justify-center gap-1.5 mt-1">
+                <button className="w-full py-2 text-[12px] font-medium text-[#D85BD6] border border-dashed border-[#F1D6F1] rounded-[8px] hover:bg-[#FDF4FD] transition-all flex items-center justify-center gap-1.5 mt-1">
                   <Plus className="w-3.5 h-3.5" strokeWidth={2} />
                   Add Variable
                 </button>
@@ -197,7 +197,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
 
             {activeLeftTab === "interactive" && (
               <div className="p-4">
-                <p className="text-[12px] text-[#71717A] dark:text-[#A1A1AA] mb-3">
+                <p className="text-[12px] text-[#71717A] mb-3">
                   Add interactive hotspots to turn this guide into a clickable walkthrough.
                 </p>
                 <button className="w-full py-2.5 text-[13px] font-medium text-white bg-[#D85BD6] rounded-[8px] hover:bg-[#C84AC7] transition-all flex items-center justify-center gap-1.5 mb-3">
@@ -205,9 +205,9 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                   Add Hotspot
                 </button>
                 {[["1", "Click Settings icon"], ["2", "Select Team tab"], ["3", "Enter email address"]].map(([num, label]) => (
-                  <div key={num} className="flex items-center gap-2 py-2 border-b border-[#F4F4F5] dark:border-[#1C1C1F]">
+                  <div key={num} className="flex items-center gap-2 py-2 border-b border-[#F4F4F5]">
                     <div className="w-5 h-5 rounded-full bg-[#D85BD6] text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">{num}</div>
-                    <span className="text-[12px] text-[#18181B] dark:text-[#FAFAFA]">{label}</span>
+                    <span className="text-[12px] text-[#18181B]">{label}</span>
                   </div>
                 ))}
               </div>
@@ -218,7 +218,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 <LangItem language="Spanish" status="complete" />
                 <LangItem language="French"  status="processing" />
                 <LangItem language="German"  status="pending" />
-                <button className="w-full py-2.5 text-[13px] font-medium text-[#D85BD6] bg-[#FDF4FD] dark:bg-[#2A1A2A] border border-[#F1D6F1] dark:border-[#3A2A3A] rounded-[8px] hover:bg-[#F1D6F1] dark:hover:bg-[#3A2030] transition-all mt-3 flex items-center justify-center gap-1.5">
+                <button className="w-full py-2.5 text-[13px] font-medium text-[#D85BD6] bg-[#FDF4FD] border border-[#F1D6F1] rounded-[8px] hover:bg-[#F1D6F1] transition-all mt-3 flex items-center justify-center gap-1.5">
                   <Plus className="w-4 h-4" strokeWidth={1.5} />
                   Add Language
                 </button>
@@ -228,28 +228,28 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
         </aside>
 
         {/* CENTER — Documentation Canvas */}
-        <div className="flex-1 flex flex-col bg-[#F8F9FA] dark:bg-[#0A0A0B] overflow-auto">
-          <div className="h-12 border-b border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#111113] flex items-center justify-between px-4 shrink-0">
+        <div className="flex-1 flex flex-col bg-[#F8F9FA] overflow-auto">
+          <div className="h-12 border-b border-[#E4E4E7] bg-white flex items-center justify-between px-4 shrink-0">
             <div className="flex items-center gap-3">
-              <button className="p-1.5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#18181B] dark:hover:text-[#FAFAFA] hover:bg-[#F8F9FA] dark:hover:bg-[#26262B] rounded-[6px] transition-all">
+              <button className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
                 <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
               </button>
-              <span className="text-[13px] font-medium text-[#18181B] dark:text-[#FAFAFA]">
+              <span className="text-[13px] font-medium text-[#18181B]">
                 Step {selectedStep}: {currentStep?.title}
               </span>
-              <button className="p-1.5 text-[#71717A] dark:text-[#A1A1AA] hover:text-[#18181B] dark:hover:text-[#FAFAFA] hover:bg-[#F8F9FA] dark:hover:bg-[#26262B] rounded-[6px] transition-all">
+              <button className="p-1.5 text-[#71717A] hover:text-[#18181B] hover:bg-[#F8F9FA] rounded-[6px] transition-all">
                 <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
               </button>
             </div>
-            <span className="text-[12px] text-[#A1A1AA] dark:text-[#52525B]">{selectedStep} / {steps.length}</span>
+            <span className="text-[12px] text-[#A1A1AA]">{selectedStep} / {steps.length}</span>
           </div>
 
           {/* Doc canvas */}
           <div className="flex-1 flex items-start justify-center p-8 overflow-auto">
-            <div className="w-full max-w-[740px] bg-white dark:bg-[#17171A] rounded-[12px] border border-[#E4E4E7] dark:border-[#26262B] shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] overflow-hidden">
+            <div className="w-full max-w-[740px] bg-white rounded-[12px] border border-[#E4E4E7] shadow-sm overflow-hidden">
 
               {/* Screenshot */}
-              <div className="aspect-[16/9] bg-[#F8F9FA] dark:bg-[#1C1C1F] relative overflow-hidden border-b border-[#E4E4E7] dark:border-[#26262B]">
+              <div className="aspect-[16/9] bg-[#F8F9FA] relative overflow-hidden border-b border-[#E4E4E7]">
                 {currentStep && (
                   <Image src={currentStep.screenshot} alt={currentStep.title} fill className="object-cover" sizes="740px" />
                 )}
@@ -264,21 +264,21 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                   <div className="w-7 h-7 rounded-full bg-[#D85BD6] flex items-center justify-center text-white text-[12px] font-bold flex-shrink-0">
                     {selectedStep}
                   </div>
-                  <h2 className="text-[22px] font-semibold text-[#18181B] dark:text-[#FAFAFA] leading-tight">
+                  <h2 className="text-[22px] font-semibold text-[#18181B] leading-tight">
                     {currentStep?.title}
                   </h2>
                 </div>
 
-                <div className="space-y-4 text-[15px] text-[#374151] dark:text-[#D1D5DB] leading-[1.7]">
+                <div className="space-y-4 text-[15px] text-[#374151] leading-[1.7]">
                   <p>
                     To navigate to the settings panel, click the gear icon in the top-right corner of the dashboard.
                     This opens the global settings menu where you can configure your workspace preferences.
                   </p>
 
-                  <div className="bg-[#FDF4FD] dark:bg-[#2A1A2A] border-l-4 border-[#D85BD6] rounded-r-[8px] px-4 py-3">
-                    <p className="text-[13px] text-[#52525B] dark:text-[#A1A1AA] font-medium">
-                      💡 <strong className="text-[#18181B] dark:text-[#FAFAFA]">Tip:</strong> You can also open settings with{" "}
-                      <code className="bg-[#F1D6F1] dark:bg-[#3A2A3A] text-[#D85BD6] px-1.5 py-0.5 rounded text-[12px] font-mono">⌘ ,</code>
+                  <div className="bg-[#FDF4FD] border-l-4 border-[#D85BD6] rounded-r-[8px] px-4 py-3">
+                    <p className="text-[13px] text-[#52525B] font-medium">
+                      💡 <strong className="text-[#18181B]">Tip:</strong> You can also open settings with{" "}
+                      <code className="bg-[#F1D6F1] text-[#D85BD6] px-1.5 py-0.5 rounded text-[12px] font-mono">⌘ ,</code>
                     </p>
                   </div>
 
@@ -289,24 +289,24 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                   <ol className="space-y-2 pl-1">
                     {["Click the gear icon ⚙️ in the top-right corner", "Select Settings from the dropdown", "Choose your configuration section"].map((s, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <span className="w-5 h-5 rounded-full bg-[#F1D6F1] dark:bg-[#3A2A3A] text-[#D85BD6] text-[11px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
-                        <span className="text-[14px] text-[#374151] dark:text-[#D1D5DB]">{s}</span>
+                        <span className="w-5 h-5 rounded-full bg-[#F1D6F1] text-[#D85BD6] text-[11px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</span>
+                        <span className="text-[14px] text-[#374151]">{s}</span>
                       </li>
                     ))}
                   </ol>
                 </div>
 
                 {/* Step nav */}
-                <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#F0F0F0] dark:border-[#26262B]">
+                <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#F0F0F0]">
                   <button
                     onClick={() => setSelectedStep(Math.max(1, selectedStep - 1))}
                     disabled={selectedStep === 1}
-                    className="flex items-center gap-2 px-4 py-2 text-[13px] font-medium text-[#71717A] dark:text-[#A1A1AA] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                    className="flex items-center gap-2 px-4 py-2 text-[13px] font-medium text-[#71717A] border border-[#E4E4E7] rounded-[8px] hover:border-[#D4D4D8] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                   >
                     <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
                     Previous
                   </button>
-                  <span className="text-[12px] text-[#A1A1AA] dark:text-[#52525B]">{selectedStep} / {steps.length}</span>
+                  <span className="text-[12px] text-[#A1A1AA]">{selectedStep} / {steps.length}</span>
                   <button
                     onClick={() => setSelectedStep(Math.min(steps.length, selectedStep + 1))}
                     disabled={selectedStep === steps.length}
@@ -322,16 +322,16 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
         </div>
 
         {/* RIGHT PANEL — AI Copilot */}
-        <aside className="w-[300px] border-l border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#111113] flex flex-col shrink-0">
-          <div className="flex border-b border-[#E4E4E7] dark:border-[#26262B]">
+        <aside className="w-[300px] border-l border-[#E4E4E7] bg-white flex flex-col shrink-0">
+          <div className="flex border-b border-[#E4E4E7]">
             {(["copilot", "settings"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveRightTab(tab)}
                 className={`flex-1 px-4 py-3 text-[12px] font-medium border-b-2 transition-colors capitalize flex items-center justify-center gap-1.5 ${
                   activeRightTab === tab
-                    ? "text-[#18181B] dark:text-[#FAFAFA] border-[#D85BD6]"
-                    : "text-[#71717A] dark:text-[#A1A1AA] border-transparent hover:text-[#18181B] dark:hover:text-[#FAFAFA]"
+                    ? "text-[#18181B] border-[#D85BD6]"
+                    : "text-[#71717A] border-transparent hover:text-[#18181B]"
                 }`}
               >
                 {tab === "copilot" && <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} />}
@@ -355,8 +355,8 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 />
               </div>
 
-              <div className="border-t border-[#E4E4E7] dark:border-[#26262B] p-3">
-                <div className="text-[11px] font-semibold text-[#A1A1AA] dark:text-[#52525B] uppercase tracking-wide mb-2">Quick Actions</div>
+              <div className="border-t border-[#E4E4E7] p-3">
+                <div className="text-[11px] font-semibold text-[#A1A1AA] uppercase tracking-wide mb-2">Quick Actions</div>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
                     { icon: PenLine,       label: "Rewrite Content" },
@@ -366,7 +366,7 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                     { icon: ImageIcon,     label: "Gen Screenshots" },
                     { icon: MousePointer,  label: "Make Interactive" },
                   ].map(({ icon: Icon, label }) => (
-                    <button key={label} className="flex items-center gap-1.5 px-2.5 py-2 text-[11px] font-medium text-[#52525B] dark:text-[#A1A1AA] bg-[#F8F9FA] dark:bg-[#1C1C1F] rounded-[6px] hover:bg-[#FDF4FD] dark:hover:bg-[#2A1A2A] hover:text-[#D85BD6] transition-all text-left">
+                    <button key={label} className="flex items-center gap-1.5 px-2.5 py-2 text-[11px] font-medium text-[#52525B] bg-[#F8F9FA] rounded-[6px] hover:bg-[#FDF4FD] hover:text-[#D85BD6] transition-all text-left">
                       <Icon className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.5} />
                       {label}
                     </button>
@@ -374,18 +374,18 @@ export function EditorWorkspace({ onBack }: EditorWorkspaceProps = {}) {
                 </div>
               </div>
 
-              <div className="p-3 border-t border-[#E4E4E7] dark:border-[#26262B]">
+              <div className="p-3 border-t border-[#E4E4E7]">
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Ask AI to help with your doc..."
-                    className="w-full pl-3 pr-9 py-2.5 text-[13px] bg-[#F8F9FA] dark:bg-[#1C1C1F] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] text-[#18181B] dark:text-[#FAFAFA] placeholder:text-[#A1A1AA] dark:placeholder:text-[#52525B] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:bg-white dark:focus:bg-[#17171A] transition-all"
+                    className="w-full pl-3 pr-9 py-2.5 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] text-[#18181B] placeholder:text-[#A1A1AA] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] focus:bg-white transition-all"
                   />
                   <button className="absolute right-2 top-1/2 -translate-y-1/2 text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
                     <ArrowRight className="w-4 h-4" strokeWidth={2} />
                   </button>
                 </div>
-                <p className="text-[10px] text-[#A1A1AA] dark:text-[#52525B] mt-1.5">
+                <p className="text-[10px] text-[#A1A1AA] mt-1.5">
                   Try: &quot;Add a warning note&quot; or &quot;Translate to Spanish&quot;
                 </p>
               </div>
@@ -427,8 +427,8 @@ function TabBtn({ icon: Icon, label, active, onClick }: {
       onClick={onClick}
       className={`flex flex-col items-center gap-1 px-2 py-2 rounded-[6px] transition-all ${
         active
-          ? "bg-[#FDF4FD] dark:bg-[#2A1A2A] text-[#D85BD6]"
-          : "text-[#71717A] dark:text-[#A1A1AA] hover:bg-[#F8F9FA] dark:hover:bg-[#1C1C1F] hover:text-[#18181B] dark:hover:text-[#FAFAFA]"
+          ? "bg-[#FDF4FD] text-[#D85BD6]"
+          : "text-[#71717A] hover:bg-[#F8F9FA] hover:text-[#18181B]"
       }`}
     >
       <Icon className="w-4 h-4" strokeWidth={1.5} />
@@ -441,23 +441,23 @@ function StepCard({ step, active, onClick }: {
   step: { id: number; title: string; status: "complete" | "processing" | "pending"; screenshot: string }
   active: boolean; onClick: () => void
 }) {
-  const dot = { complete: "bg-[#10B981]", processing: "bg-[#D85BD6]", pending: "bg-[#D4D4D8] dark:bg-[#3A3A40]" }
+  const dot = { complete: "bg-[#10B981]", processing: "bg-[#D85BD6]", pending: "bg-[#D4D4D8]" }
   return (
     <div
       onClick={onClick}
       className={`cursor-pointer rounded-[8px] border transition-all ${
         active
-          ? "border-[#D85BD6] bg-[#FDF4FD] dark:bg-[#2A1A2A]"
-          : "border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#17171A] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40]"
+          ? "border-[#D85BD6] bg-[#FDF4FD]"
+          : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8]"
       }`}
     >
-      <div className="aspect-video bg-[#F8F9FA] dark:bg-[#1C1C1F] rounded-t-[7px] overflow-hidden relative">
+      <div className="aspect-video bg-[#F8F9FA] rounded-t-[7px] overflow-hidden relative">
         <Image src={step.screenshot} alt={step.title} fill className="object-cover" sizes="200px" />
       </div>
       <div className="p-2.5 flex items-start justify-between gap-2">
         <div>
-          <div className="text-[11px] text-[#A1A1AA] dark:text-[#52525B] mb-0.5">Step {step.id}</div>
-          <div className="text-[12px] font-medium text-[#18181B] dark:text-[#FAFAFA] leading-tight">{step.title}</div>
+          <div className="text-[11px] text-[#A1A1AA] mb-0.5">Step {step.id}</div>
+          <div className="text-[12px] font-medium text-[#18181B] leading-tight">{step.title}</div>
         </div>
         <div className={`w-2 h-2 rounded-full flex-shrink-0 mt-1 ${dot[step.status]}`} />
       </div>
@@ -467,14 +467,14 @@ function StepCard({ step, active, onClick }: {
 
 function LangItem({ language, status }: { language: string; status: "complete" | "processing" | "pending" }) {
   const cfg = {
-    complete:   { icon: CheckCircle2, color: "text-[#10B981]", bg: "bg-[#ECFDF5] dark:bg-[#052E1C]", label: "Complete" },
-    processing: { icon: Loader2,      color: "text-[#D85BD6]", bg: "bg-[#FDF4FD] dark:bg-[#2A1A2A]", label: "Processing" },
-    pending:    { icon: Clock,        color: "text-[#71717A]", bg: "bg-[#F4F4F5] dark:bg-[#26262B]",  label: "Pending" },
+    complete:   { icon: CheckCircle2, color: "text-[#10B981]", bg: "bg-[#ECFDF5]", label: "Complete" },
+    processing: { icon: Loader2,      color: "text-[#D85BD6]", bg: "bg-[#FDF4FD]", label: "Processing" },
+    pending:    { icon: Clock,        color: "text-[#71717A]", bg: "bg-[#F4F4F5]",  label: "Pending" },
   }[status]
   const Icon = cfg.icon
   return (
-    <div className="flex items-center justify-between p-3 bg-white dark:bg-[#17171A] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px]">
-      <span className="text-[13px] font-medium text-[#18181B] dark:text-[#FAFAFA]">{language}</span>
+    <div className="flex items-center justify-between p-3 bg-white border border-[#E4E4E7] rounded-[8px]">
+      <span className="text-[13px] font-medium text-[#18181B]">{language}</span>
       <div className={`flex items-center gap-1.5 px-2 py-1 ${cfg.bg} rounded-full`}>
         <Icon className={`w-3 h-3 ${cfg.color} ${status === "processing" ? "animate-spin" : ""}`} strokeWidth={1.5} />
         <span className={`text-[10px] font-medium ${cfg.color}`}>{cfg.label}</span>
@@ -490,19 +490,19 @@ function AIMsg({ message, timestamp, actions }: { message: string; timestamp: st
         <Sparkles className="w-3.5 h-3.5 text-white" strokeWidth={1.5} />
       </div>
       <div className="flex-1">
-        <div className="bg-[#F8F9FA] dark:bg-[#1C1C1F] rounded-[10px] rounded-tl-[2px] p-3 text-[12px] text-[#18181B] dark:text-[#D1D5DB] leading-relaxed">
+        <div className="bg-[#F8F9FA] rounded-[10px] rounded-tl-[2px] p-3 text-[12px] text-[#18181B] leading-relaxed">
           {message}
         </div>
         {actions && (
           <div className="flex gap-2 mt-2">
             {actions.map((a) => (
-              <button key={a} className="px-3 py-1.5 text-[11px] font-medium text-[#D85BD6] bg-[#FDF4FD] dark:bg-[#2A1A2A] border border-[#F1D6F1] dark:border-[#3A2A3A] rounded-[6px] hover:bg-[#F1D6F1] dark:hover:bg-[#3A2030] transition-all">
+              <button key={a} className="px-3 py-1.5 text-[11px] font-medium text-[#D85BD6] bg-[#FDF4FD] border border-[#F1D6F1] rounded-[6px] hover:bg-[#F1D6F1] transition-all">
                 {a}
               </button>
             ))}
           </div>
         )}
-        <div className="text-[10px] text-[#A1A1AA] dark:text-[#52525B] mt-1">{timestamp}</div>
+        <div className="text-[10px] text-[#A1A1AA] mt-1">{timestamp}</div>
       </div>
     </div>
   )
@@ -511,12 +511,12 @@ function AIMsg({ message, timestamp, actions }: { message: string; timestamp: st
 function UserMsg({ message, timestamp }: { message: string; timestamp: string }) {
   return (
     <div className="flex gap-2.5 flex-row-reverse">
-      <div className="w-6 h-6 rounded-full bg-[#18181B] dark:bg-[#FAFAFA] flex items-center justify-center flex-shrink-0 text-white dark:text-[#18181B] text-[10px] font-bold">S</div>
+      <div className="w-6 h-6 rounded-full bg-[#18181B] flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">S</div>
       <div className="flex-1">
-        <div className="bg-[#18181B] dark:bg-[#FAFAFA] rounded-[10px] rounded-tr-[2px] p-3 text-[12px] text-white dark:text-[#18181B] leading-relaxed">
+        <div className="bg-[#18181B] rounded-[10px] rounded-tr-[2px] p-3 text-[12px] text-white leading-relaxed">
           {message}
         </div>
-        <div className="text-[10px] text-[#A1A1AA] dark:text-[#52525B] mt-1 text-right">{timestamp}</div>
+        <div className="text-[10px] text-[#A1A1AA] mt-1 text-right">{timestamp}</div>
       </div>
     </div>
   )
@@ -525,7 +525,7 @@ function UserMsg({ message, timestamp }: { message: string; timestamp: string })
 function SettingsSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="text-[11px] font-semibold text-[#18181B] dark:text-[#FAFAFA] mb-3 uppercase tracking-wide">{title}</h4>
+      <h4 className="text-[11px] font-semibold text-[#18181B] mb-3 uppercase tracking-wide">{title}</h4>
       <div className="space-y-3">{children}</div>
     </div>
   )
@@ -534,10 +534,10 @@ function SettingsSection({ title, children }: { title: string; children: React.R
 function SettingsField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <label className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] mb-1.5 block">{label}</label>
+      <label className="text-[11px] text-[#71717A] mb-1.5 block">{label}</label>
       <input
         defaultValue={value}
-        className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] dark:bg-[#1C1C1F] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] text-[#18181B] dark:text-[#FAFAFA] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] transition-all"
+        className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] text-[#18181B] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] transition-all"
       />
     </div>
   )
@@ -546,8 +546,8 @@ function SettingsField({ label, value }: { label: string; value: string }) {
 function SettingsSelect({ label, options }: { label: string; options: string[] }) {
   return (
     <div>
-      <label className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] mb-1.5 block">{label}</label>
-      <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] dark:bg-[#1C1C1F] border border-[#E4E4E7] dark:border-[#26262B] rounded-[8px] text-[#18181B] dark:text-[#FAFAFA] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] transition-all">
+      <label className="text-[11px] text-[#71717A] mb-1.5 block">{label}</label>
+      <select className="w-full px-3 py-2 text-[13px] bg-[#F8F9FA] border border-[#E4E4E7] rounded-[8px] text-[#18181B] focus:outline-none focus:ring-2 focus:ring-[#D85BD6] transition-all">
         {options.map(o => <option key={o}>{o}</option>)}
       </select>
     </div>
@@ -557,8 +557,8 @@ function SettingsSelect({ label, options }: { label: string; options: string[] }
 function SettingsToggle({ label, enabled }: { label: string; enabled: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-[12px] text-[#18181B] dark:text-[#FAFAFA]">{label}</span>
-      <div className={`relative w-9 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#D85BD6]" : "bg-[#E4E4E7] dark:bg-[#26262B]"}`}>
+      <span className="text-[12px] text-[#18181B]">{label}</span>
+      <div className={`relative w-9 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#D85BD6]" : "bg-[#E4E4E7]"}`}>
         <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all ${enabled ? "left-[18px]" : "left-0.5"}`} />
       </div>
     </div>

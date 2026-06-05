@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Plus, Workflow, Upload, FileText, X } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 interface TopNavProps {
   onRecordClick: () => void
@@ -20,11 +19,8 @@ export function TopNav({ onRecordClick, onUploadClick, onTemplateClick }: TopNav
 
   return (
     <>
-      <nav className="sticky top-0 z-20 bg-white dark:bg-[#111113] border-b border-[#E4E4E7] dark:border-[#26262B]">
+      <nav className="sticky top-0 z-20 bg-white border-b border-[#E4E4E7]">
         <div className="px-8 py-3 flex items-center justify-end gap-3">
-          {/* Theme toggle */}
-          <ThemeToggle />
-
           {/* Primary CTA */}
           <button
             onClick={() => setShowMenu(true)}
@@ -37,19 +33,19 @@ export function TopNav({ onRecordClick, onUploadClick, onTemplateClick }: TopNav
       </nav>
 
       {showMenu && (
-        <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50 backdrop-blur-sm p-8">
-          <div className="bg-white dark:bg-[#17171A] rounded-[16px] w-full max-w-[480px] shadow-xl border border-transparent dark:border-[#26262B]">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm p-8">
+          <div className="bg-white rounded-[16px] w-full max-w-[480px] shadow-xl border border-transparent">
 
-            <div className="flex items-center justify-between px-6 pt-6 pb-5 border-b border-[#E4E4E7] dark:border-[#26262B]">
+            <div className="flex items-center justify-between px-6 pt-6 pb-5 border-b border-[#E4E4E7]">
               <div>
-                <h2 className="text-[20px] font-semibold text-[#111111] dark:text-[#FAFAFA] mb-1">Create new</h2>
-                <p className="text-[14px] text-[#71717A] dark:text-[#A1A1AA]">Choose how you&apos;d like to start</p>
+                <h2 className="text-[20px] font-semibold text-[#111111] mb-1">Create new</h2>
+                <p className="text-[14px] text-[#71717A]">Choose how you&apos;d like to start</p>
               </div>
               <button
                 onClick={() => setShowMenu(false)}
-                className="p-1.5 hover:bg-[#F4F4F5] dark:hover:bg-[#26262B] rounded-[6px] transition-colors"
+                className="p-1.5 hover:bg-[#F4F4F5] rounded-[6px] transition-colors"
               >
-                <X className="w-4 h-4 text-[#71717A] dark:text-[#A1A1AA]" strokeWidth={1.5} />
+                <X className="w-4 h-4 text-[#71717A]" strokeWidth={1.5} />
               </button>
             </div>
 
@@ -96,19 +92,19 @@ function CreateOption({ icon, title, description, onClick, primary }: CreateOpti
       onClick={onClick}
       className={`w-full text-left p-4 rounded-[12px] border transition-all ${
         primary
-          ? "border-[#D85BD6] bg-[#FAFAFA] dark:bg-[#1C1C1F]"
-          : "border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#17171A] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] hover:bg-[#FAFAFA] dark:hover:bg-[#1C1C1F]"
+          ? "border-[#D85BD6] bg-[#FAFAFA]"
+          : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:bg-[#FAFAFA]"
       }`}
     >
       <div className="flex items-center gap-3">
         <div className={`p-2 rounded-[8px] flex-shrink-0 ${
-          primary ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F4F4F5] dark:bg-[#26262B] text-[#52525B] dark:text-[#A1A1AA]"
+          primary ? "bg-[#FDF4FD] text-[#D85BD6]" : "bg-[#F4F4F5] text-[#52525B]"
         }`}>
           {icon}
         </div>
         <div className="flex-1">
-          <h3 className="text-[15px] font-medium text-[#111111] dark:text-[#FAFAFA] mb-0.5">{title}</h3>
-          <p className="text-[13px] text-[#71717A] dark:text-[#A1A1AA]">{description}</p>
+          <h3 className="text-[15px] font-medium text-[#111111] mb-0.5">{title}</h3>
+          <p className="text-[13px] text-[#71717A]">{description}</p>
         </div>
       </div>
     </button>

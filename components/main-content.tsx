@@ -26,7 +26,7 @@ export function MainContent() {
   const [showTemplateFlow, setShowTemplateFlow] = useState(false)
 
   return (
-    <main className="flex-1 overflow-auto bg-[#FAFAFA] dark:bg-[#0A0A0B]">
+    <main className="flex-1 overflow-auto bg-[#FAFAFA]">
       {showRecordFlow   && <CreationFlow  onClose={() => setShowRecordFlow(false)}   />}
       {showUploadFlow   && <UploadFlow    onClose={() => setShowUploadFlow(false)}   />}
       {showTemplateFlow && <TemplateFlow  onClose={() => setShowTemplateFlow(false)} />}
@@ -41,10 +41,10 @@ export function MainContent() {
 
         {/* Hero */}
         <section className="mb-12 max-w-[820px]">
-          <h1 className="font-serif text-[42px] leading-[1.15] tracking-[-0.02em] text-[#18181B] dark:text-[#FAFAFA] mb-4">
+          <h1 className="font-serif text-[42px] leading-[1.15] tracking-[-0.02em] text-[#18181B] mb-4">
             Create product knowledge people actually use.
           </h1>
-          <p className="text-[16px] leading-[1.6] text-[#52525B] dark:text-[#A1A1AA] max-w-[660px]">
+          <p className="text-[16px] leading-[1.6] text-[#52525B] max-w-[660px]">
             Turn recordings, screenshots, and workflows into documentation, SOPs, onboarding guides, and interactive walkthroughs.
           </p>
         </section>
@@ -172,7 +172,7 @@ export function MainContent() {
 function SectionHeader({ title, action }: { title: string; action?: string }) {
   return (
     <div className="flex items-center justify-between mb-5">
-      <h2 className="text-[20px] font-semibold text-[#18181B] dark:text-[#FAFAFA]">{title}</h2>
+      <h2 className="text-[20px] font-semibold text-[#18181B]">{title}</h2>
       {action && (
         <button className="text-[13px] text-[#D85BD6] hover:text-[#C84AC7] font-medium transition-colors flex items-center gap-1.5">
           {action}
@@ -197,23 +197,23 @@ function QuickAction({
         "group flex items-center gap-3.5 px-5 py-4 rounded-[10px] border text-left transition-all duration-200 active:scale-[0.98]",
         primary
           ? "bg-[#D85BD6] border-[#D85BD6] hover:bg-[#C84AC7] hover:border-[#C84AC7] hover:shadow-lg"
-          : "border-[#E4E4E7] dark:border-[#26262B] bg-white dark:bg-[#17171A] hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] hover:shadow-md"
+          : "border-[#E4E4E7] bg-white hover:border-[#D4D4D8] hover:shadow-md"
       )}
     >
       <div className={cn(
         "p-2 rounded-[8px] flex-shrink-0 transition-colors duration-200",
-        primary ? "bg-white/15" : "bg-[#F8F9FA] dark:bg-[#26262B] group-hover:bg-[#FDF4FD] dark:group-hover:bg-[#2A1F2A]"
+        primary ? "bg-white/15" : "bg-[#F8F9FA] group-hover:bg-[#FDF4FD]"
       )}>
         <div className={cn(
           "transition-colors duration-200",
-          primary ? "text-white" : "text-[#52525B] dark:text-[#A1A1AA] group-hover:text-[#D85BD6]"
+          primary ? "text-white" : "text-[#52525B] group-hover:text-[#D85BD6]"
         )}>{icon}</div>
       </div>
       <div className="flex-1 min-w-0">
-        <div className={cn("font-semibold text-[15px] mb-0.5", primary ? "text-white" : "text-[#18181B] dark:text-[#FAFAFA]")}>
+        <div className={cn("font-semibold text-[15px] mb-0.5", primary ? "text-white" : "text-[#18181B]")}>
           {title}
         </div>
-        <div className={cn("text-[13px]", primary ? "text-white/80" : "text-[#71717A] dark:text-[#A1A1AA]")}>
+        <div className={cn("text-[13px]", primary ? "text-white/80" : "text-[#71717A]")}>
           {description}
         </div>
       </div>
@@ -224,9 +224,9 @@ function QuickAction({
 // ── Doc Card ──────────────────────────────────────────────────────────────────
 
 const statusConfig = {
-  Published:    { color: "text-[#059669]", bg: "bg-[#ECFDF5] dark:bg-[#052E1C]",   icon: CheckCircle2 },
-  "In Progress":{ color: "text-[#D85BD6]", bg: "bg-[#FDF4FD] dark:bg-[#2A1A2A]",   icon: AlertCircle },
-  Draft:        { color: "text-[#71717A]", bg: "bg-[#F4F4F5] dark:bg-[#26262B]",   icon: Clock },
+  Published:    { color: "text-[#059669]", bg: "bg-[#ECFDF5]",   icon: CheckCircle2 },
+  "In Progress":{ color: "text-[#D85BD6]", bg: "bg-[#FDF4FD]",   icon: AlertCircle },
+  Draft:        { color: "text-[#71717A]", bg: "bg-[#F4F4F5]",   icon: Clock },
 } as const
 
 function DocCard({
@@ -239,8 +239,8 @@ function DocCard({
   const StatusIcon = cfg.icon
 
   return (
-    <div className="group bg-white dark:bg-[#17171A] border border-[#E4E4E7] dark:border-[#26262B] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
-      <div className="aspect-[16/9] bg-[#F8F9FA] dark:bg-[#1C1C1F] relative overflow-hidden">
+    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+      <div className="aspect-[16/9] bg-[#F8F9FA] relative overflow-hidden">
         <Image
           src={SCREENSHOTS[screenshotIndex % SCREENSHOTS.length]}
           alt={title}
@@ -255,14 +255,14 @@ function DocCard({
       </div>
 
       <div className="p-4">
-        <div className="font-semibold text-[15px] text-[#18181B] dark:text-[#FAFAFA] mb-3 leading-snug">{title}</div>
+        <div className="font-semibold text-[15px] text-[#18181B] mb-3 leading-snug">{title}</div>
 
         <div className={cn("inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-[11px] font-semibold mb-3", cfg.bg, cfg.color)}>
           <StatusIcon className="w-3 h-3" strokeWidth={2} />
           {status}
         </div>
 
-        <div className="grid grid-cols-3 gap-2 text-[11px] text-[#71717A] dark:text-[#52525B]">
+        <div className="grid grid-cols-3 gap-2 text-[11px] text-[#71717A]">
           <div className="flex items-center gap-1">
             <Clock className="w-3 h-3 flex-shrink-0" strokeWidth={1.5} />
             <span className="truncate">{lastEdited}</span>
@@ -287,14 +287,14 @@ function RecommendationCard({
   icon, title, description, action,
 }: { icon: React.ReactNode; title: string; description: string; action: string }) {
   return (
-    <div className="group bg-white dark:bg-[#17171A] border border-[#E4E4E7] dark:border-[#26262B] rounded-[10px] p-4 hover:border-[#F1D6F1] dark:hover:border-[#3A2A3A] hover:shadow-sm dark:hover:shadow-[0_2px_12px_rgba(0,0,0,0.3)] transition-all duration-200 cursor-pointer">
+    <div className="group bg-white border border-[#E4E4E7] rounded-[10px] p-4 hover:border-[#F1D6F1] hover:shadow-sm transition-all duration-200 cursor-pointer">
       <div className="flex items-start gap-3 mb-3">
-        <div className="p-2 bg-[#FDF4FD] dark:bg-[#2A1A2A] rounded-[8px] flex-shrink-0 group-hover:bg-[#F1D6F1] dark:group-hover:bg-[#3A2030] transition-colors">
+        <div className="p-2 bg-[#FDF4FD] rounded-[8px] flex-shrink-0 group-hover:bg-[#F1D6F1] transition-colors">
           <div className="text-[#D85BD6]">{icon}</div>
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-[14px] text-[#18181B] dark:text-[#FAFAFA] mb-1">{title}</h3>
-          <p className="text-[12px] text-[#71717A] dark:text-[#A1A1AA] leading-relaxed">{description}</p>
+          <h3 className="font-semibold text-[14px] text-[#18181B] mb-1">{title}</h3>
+          <p className="text-[12px] text-[#71717A] leading-relaxed">{description}</p>
         </div>
       </div>
       <button className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#D85BD6] hover:text-[#C84AC7] transition-colors">
@@ -309,7 +309,7 @@ function RecommendationCard({
 
 function TemplateCard({ title, category, uses, src }: { title: string; category: string; uses: string; src: string }) {
   return (
-    <div className="group bg-white dark:bg-[#17171A] border border-[#E4E4E7] dark:border-[#26262B] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] dark:hover:border-[#3A3A40] hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+    <div className="group bg-white border border-[#E4E4E7] rounded-[12px] overflow-hidden hover:border-[#D4D4D8] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
       <div className="relative overflow-hidden" style={{ aspectRatio: "16/10" }}>
         <Image
           src={src}
@@ -329,10 +329,10 @@ function TemplateCard({ title, category, uses, src }: { title: string; category:
       </div>
       <div className="px-3.5 py-3 flex items-center justify-between">
         <div>
-          <div className="font-semibold text-[13px] text-[#18181B] dark:text-[#FAFAFA] leading-tight">{title}</div>
-          <div className="text-[11px] text-[#A1A1AA] dark:text-[#52525B] mt-0.5">{uses} uses</div>
+          <div className="font-semibold text-[13px] text-[#18181B] leading-tight">{title}</div>
+          <div className="text-[11px] text-[#A1A1AA] mt-0.5">{uses} uses</div>
         </div>
-        <Play className="w-4 h-4 text-[#D4D4D8] dark:text-[#3A3A40] group-hover:text-[#D85BD6] transition-colors flex-shrink-0" strokeWidth={1.5} />
+        <Play className="w-4 h-4 text-[#D4D4D8] group-hover:text-[#D85BD6] transition-colors flex-shrink-0" strokeWidth={1.5} />
       </div>
     </div>
   )
